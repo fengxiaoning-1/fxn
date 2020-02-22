@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yxb.cms.dao.ClubMapper">
+    <resultMap id="BaseResultMap" type="com.yxb.cms.domain.vo.ClubEntity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="club_name" property="clubName" jdbcType="VARCHAR"/>
+        <result column="club_boss_name" property="clubBossName" jdbcType="VARCHAR"/>
+        <result column="club_boss_sex" property="clubBossSex" jdbcType="VARCHAR"/>
+        <result column="club_level" property="clubLevel" jdbcType="VARCHAR"/>
+        <result column="club_create_time" property="clubCreateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="queryClubList" resultMap="BaseResultMap">
+        select * from cc_club
+    </select>
+
+
+    <select id="queryClubCount" resultType="java.lang.Integer">
+        select count(*) from cc_club
+    </select>
+
+
+</mapper>

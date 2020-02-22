@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="ppp@39.108.161.5" uuid="eddf7edc-78af-4c0e-8b4c-74f2f084fa7d">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+      <user-name>woasis</user-name>
+    </data-source>
+  </component>
+</project>

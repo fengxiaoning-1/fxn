@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yxb.cms.dao.AccessManagerMapper">
+    <resultMap id="BaseResultMap" type="com.yxb.cms.domain.vo.AccessManagerEntity">
+        <id column="Id" property="Id" jdbcType="INTEGER"/>
+        <result column="UserId" property="UserId" jdbcType="INTEGER"/>
+        <result column="TrueName" property="TrueName" jdbcType="VARCHAR"/>
+        <result column="ParkId" property="ParkId" jdbcType="INTEGER"/>
+        <result column="ParkName" property="ParkName" jdbcType="VARCHAR"/>
+        <result column="RoleCode" property="RoleCode" jdbcType="VARCHAR"/>
+        <result column="IsCheck" property="IsCheck" jdbcType="INTEGER"/>
+        <result column="PassCode" property="PassCode" jdbcType="VARCHAR"/>
+        <result column="PassCodeValidDate" property="PassCodeValidDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="accessManagerList" resultMap="BaseResultMap">
+        select * from sys_user_park
+    </select>
+
+    <select id="accessManagerClubCount" resultType="java.lang.Integer">
+        select count(*) from sys_user_park
+    </select>
+
+
+</mapper>
