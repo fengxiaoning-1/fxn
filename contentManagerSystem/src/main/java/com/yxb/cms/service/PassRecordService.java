@@ -3,6 +3,7 @@ package com.yxb.cms.service;
 import com.yxb.cms.dao.PassRecordMapper;
 import com.yxb.cms.domain.dto.PassRecordDto;
 import com.yxb.cms.domain.vo.PassRecordEntity;
+import com.yxb.cms.domain.vo.PassRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,6 +72,72 @@ public class PassRecordService {
         }
 
         return aManagerList;
+    }
+    /**
+     * 出入记录EXCEL导出
+     * @param PassRecord 出入实体
+     * @return
+     */
+    public ExcelExport excelExportPassRecordList(PassRecord passRecord){
+        ExcelExport excelExport = new ExcelExport();
+        List<PassRecord> passList = this.selectPassList(passRecord);
+        excelExport.addColumnInfo("用户编号","ParkId");
+        excelExport.addColumnInfo("用户姓名","ParkName");
+        excelExport.addColumnInfo("工厂名称","DoorName");
+        excelExport.addColumnInfo("通行时间","PassDate");
+        excelExport.addColumnInfo("体温","Temperature");
+        excelExport.addColumnInfo("出行理由","Reason");
+        excelExport.addColumnInfo("出入状态","IsIn");
+        excelExport.addColumnInfo("修改时间","Admit");
+
+        excelExport.setDataList(passList);
+        return excelExport;
+    }
+    /**
+     * 出入记录List
+     * @param PassRecord 出入实体
+     * @return
+     */
+    public List<PassRecord> selectPassList(PassRecord passRecord){
+
+        List<PassRecord> passList = passRecordMapper.selectUserList(passRecord);
+        if (null != passList && !passList.isEmpty()){
+            for (PassRecord ps : passList) {
+            	String isIn = ps.getIsIn();
+                switch (isIn) {
+                    case "0" :
+                    	ps.setIsIn("未进门");
+                        break;
+                    case "1" :
+                    	ps.setIsIn("已进门");
+                        break;
+
+                    default:
+                    	ps.setIsIn("");
+                        break;
+                }
+
+                //0:未审核;1:通过;2:不通过
+                String admit = ps.getAdmit();
+                switch (admit) {
+                    case "0":
+                    	ps.setAdmit("未审核");
+                        break;
+                    case "1":
+                    	ps.setAdmit("通过");
+                        break;
+                    case "2":
+                    	ps.setAdmit("不通过");
+                        break;
+
+                    default:
+                    	ps.setAdmit("");
+                        break;
+                }
+
+            }
+        }
+        return passList;
     }
 
     public Long passRecordCount(PassRecordEntity passRecordEntity) {

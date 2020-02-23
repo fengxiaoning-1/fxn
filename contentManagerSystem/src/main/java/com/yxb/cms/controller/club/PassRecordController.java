@@ -45,4 +45,14 @@ public class PassRecordController {
         map.put("data", passRecordList);
         return Json.toJson(map);
     }
+    /**
+     * 导出通行记录信息
+     * @param user 用户实体
+     * @return
+     */
+    @RequestMapping("/excel_passRecord_export.do")
+    public ModelAndView excelPassRecordExport(PassRecord passRecord){
+        ExcelExport excelExport = passRecordService.excelExportPassRecordList(passRecord);
+        return CommonHelper.getExcelModelAndView(excelExport);
+    }
 }

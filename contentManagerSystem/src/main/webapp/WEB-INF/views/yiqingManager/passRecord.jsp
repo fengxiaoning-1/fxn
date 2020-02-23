@@ -29,22 +29,13 @@
                         </div>
                         <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
                     </form>
-                </div>
-             <%--   <shiro:hasPermission name="0rbT8t2P">
-                    <div class="layui-inline">
-                        <a class="layui-btn layui-btn-normal userAdd_btn"> <i class="layui-icon larry-icon larry-xinzeng1"></i>新增用户</a>
-                    </div>
-                </shiro:hasPermission>--%>
-                <%--<shiro:hasPermission name="0jOfTHGx">
+               
+               <shiro:hasPermission name="0jOfTHGx">
                     <div class="layui-inline">
                         <a class="layui-btn layui-btn-normal excelUserExport_btn"  style="background-color:#5FB878"> <i class="layui-icon larry-icon larry-danye"></i>导出</a>
                     </div>
                 </shiro:hasPermission>
-                <shiro:hasPermission name="lBE3hz5c">
-                    <div class="layui-inline">
-                        <a class="layui-btn layui-btn-danger userBatchFail_btn"><i class="layui-icon larry-icon larry-shanchu"></i>批量失效</a>
-                    </div>
-                </shiro:hasPermission>--%>
+                
 
             </blockquote>
             <div class="larry-separate"></div>
@@ -126,109 +117,20 @@
 
         });
 
-        /**新增用户*/
-        $(".userAdd_btn").click(function(){
-            var url = "${ctx}/user/user_add.do";
-            common.cmsLayOpen('新增用户',url,'550px','265px');
-        });
+       
 
-        /**导出用户信息*/
+        /**导出出入记录信息*/
         $(".excelUserExport_btn").click(function(){
-            var url = '${ctx}/user/excel_users_export.do';
+            var url = '${ctx}/passRecord/excel_passRecord_export.do';
             $("#userSearchForm").attr("action",url);
             $("#userSearchForm").submit();
         });
-        /**批量失效*/
-        $(".userBatchFail_btn").click(function(){
-
-            //表格行操作
-            var checkStatus = table.checkStatus('userTableId');
-            if(checkStatus.data.length == 0){
-                common.cmsLayErrorMsg("请选择要失效的用户信息");
-            }else{
-                var isCreateBy = false;
-                var userStatus = false;
-                var currentUserName = '${LOGIN_NAME.userId}';
-                var userIds = [];
-
-                $(checkStatus.data).each(function(index,item){
-                    userIds.push(item.userId);
-                    //不能失效当前登录用户
-                    if(currentUserName != item.userId){
-                        isCreateBy = true;
-                    }else{
-                        isCreateBy = false;
-                        return false;
-                    }
-                    //用户已失效
-                    if(item.userStatus == 0){
-                        userStatus = true;
-                    }else{
-                        userStatus = false;
-                        return false;
-                    }
-
-                });
-
-                if(isCreateBy==false){
-                    common.cmsLayErrorMsg("当前登录用户不能被失效,请重新选择");
-
-                    return false;
-                }
-                if(userStatus==false){
-                    common.cmsLayErrorMsg("当前选择的用户已失效");
-                    return false;
-                }
-
-                var url = "${ctx}/user/ajax_user_batch_fail.do";
-                var param = {userIds:userIds};
-                common.ajaxCmsConfirm('系统提示', '确定失效当前用户，并解除与角色绑定关系吗?',url,param);
-
-            }
-
-        });
-
+        
         /**监听工具条*/
         table.on('tool(userTableId)', function(obj){
             var data = obj.data; //获得当前行数据
             var layEvent = obj.event; //获得 lay-event 对应的值
 
-            //修改用户
-            if(layEvent === 'user_edit') {
-                var userId = data.userId;
-                var url =  "${ctx}/user/user_update.do?userId="+userId;
-                common.cmsLayOpen('编辑用户',url,'550px','265px');
-
-            //分配角色
-            }else if(layEvent === 'user_grant'){
-                var userId = data.userId;
-                var userStatus = data.userStatus;
-                if(userStatus == 1){
-                    common.cmsLayErrorMsg("当前用户已失效,不能被分配角色");
-                    return false;
-                }
-                var url =  "${ctx}/user/user_grant.do?userId="+userId;
-                common.cmsLayOpen('分配角色',url,'500px','440px');
-
-            //用户失效
-            }else if(layEvent === 'user_fail') {
-                var userId = data.userId;
-                var userStatus = data.userStatus;
-                var currentUserId = '${LOGIN_NAME.userId}';/*当前登录用户的ID*/
-                if(userStatus == 1){
-                    common.cmsLayErrorMsg("当前用户已失效");
-                    return false;
-                }
-                if(userId == currentUserId){
-                    common.cmsLayErrorMsg("当前登陆用户不能被失效");
-                    return false;
-                }
-
-                var url = "${ctx}/user/ajax_user_fail.do";
-                var param = {userId:userId};
-                common.ajaxCmsConfirm('系统提示', '确定失效用户，并解除与角色绑定关系吗?',url,param);
-
-            }
         });
 
 

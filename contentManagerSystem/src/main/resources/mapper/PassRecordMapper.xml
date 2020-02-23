@@ -54,7 +54,14 @@
 
 
 
+	<!-- 出入List -->
+    <select id="selectUserList" parameterType="com.yxb.cms.domain.vo.PassRecord" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from cc_user
+        <include refid="selectPageParmas" />
 
+    </select>
 
 
 
