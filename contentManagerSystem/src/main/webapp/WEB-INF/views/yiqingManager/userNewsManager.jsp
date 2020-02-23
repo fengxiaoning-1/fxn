@@ -25,7 +25,7 @@
                     <form class="layui-form" id="userSearchForm">
 
                         <div class="layui-input-inline" style="width:145px;">
-                            <input type="text" name="TrueName" value="" placeholder="请输入关键字" class="layui-input search_input">
+                            <input type="text" name="TrueName" value="" placeholder="请输入姓名" class="layui-input search_input">
                         </div>
                         <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
                     </form>
@@ -80,8 +80,8 @@
             size: 'sm',
             cols: [[
                 /*{type:"checkbox"},*/
-                {field:'TrueName', title: '真实姓名',align:'center',width: '12%'},
-                {field:'NickName', title: 'NickName',align:'center'},
+                {field:'TrueName', title: '姓名',align:'center',width: '12%'},
+                {field:'NickName', title: '昵称',align:'center'},
                 {field:'Gender', title: '性别',align:'center'},
                 {field:'PhoneNumber', title: '联系方式',align:'center'},
                 {field:'DefaultRoleCode', title: '用户角色',align:'center'},
