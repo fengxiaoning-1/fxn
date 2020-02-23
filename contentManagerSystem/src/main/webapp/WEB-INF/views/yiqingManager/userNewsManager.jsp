@@ -71,7 +71,7 @@
         /**用户表格加载*/
         table.render({
             elem: '#userTableList',
-            url: '${ctx}/userNewsManager/userNewsManager.do',
+            url: '${ctx}/userManager/userNewsManagerList.do',
             id:'userTableId',
             method: 'post',
             height:'full-140',

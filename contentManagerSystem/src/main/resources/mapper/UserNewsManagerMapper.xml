@@ -22,11 +22,11 @@
 
     </resultMap>
 
-    <select id="UserNewsManagerList" resultMap="BaseResultMap">
+    <select id="userNewsManagerList" resultMap="BaseResultMap">
         select * from sys_user
     </select>
 
-    <select id="UserNewsManagerCount" resultType="java.lang.Integer">
+    <select id="userNewsManagerCount" resultType="java.lang.Integer">
         select count(*) from sys_user
     </select>
 

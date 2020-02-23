@@ -36,6 +36,7 @@ public class UserNewsManagerEntity {
     private String DefaultRoleCode;
     private String HasEpidemic;
     private String SessionKey;
+    private String AvatarUrl;
 
     private Integer DefaultParkId;
 
