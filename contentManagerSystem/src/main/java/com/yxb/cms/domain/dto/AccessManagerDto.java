@@ -41,6 +41,11 @@ import java.io.Serializable;
 public class AccessManagerDto implements Serializable {
 
     /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * 编号
      */
     private Integer Id;

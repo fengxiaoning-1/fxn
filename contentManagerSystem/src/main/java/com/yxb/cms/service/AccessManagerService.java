@@ -15,18 +15,18 @@ public class AccessManagerService {
     @Autowired
     private AccessManagerMapper accessManagerMapper;
 
-    public List<AccessManagerDto> accessManagerList() {
+    public List<AccessManagerDto> accessManagerList(AccessManagerEntity accessManagerEntity) {
 
         List<AccessManagerDto> aManagerList = new ArrayList<AccessManagerDto>();
 
-        List<AccessManagerEntity> accessManagerList = accessManagerMapper.accessManagerList();
+        List<AccessManagerEntity> accessManagerList = accessManagerMapper.selectAccessManagerListByPage(accessManagerEntity);
         if(accessManagerList!=null && accessManagerList.size()>0){
             for (int i = 0; i < accessManagerList.size(); i++) {
-                AccessManagerEntity accessManagerEntity = accessManagerList.get(i);
+                AccessManagerEntity amEntity = accessManagerList.get(i);
                 AccessManagerDto ame = new AccessManagerDto();
-                ame.setTrueName(accessManagerEntity.getTrueName());
-                ame.setParkName(accessManagerEntity.getParkName());
-                String roleCode = accessManagerEntity.getRoleCode();
+                ame.setTrueName(amEntity.getTrueName());
+                ame.setParkName(amEntity.getParkName());
+                String roleCode = amEntity.getRoleCode();
                 switch (roleCode) {
                     case "admin":
                         ame.setRoleCode("管理员");
@@ -44,7 +44,7 @@ public class AccessManagerService {
                         ame.setRoleCode("");
                         break;
                 }
-                Integer isCheck = accessManagerEntity.getIsCheck();
+                Integer isCheck = amEntity.getIsCheck();
                 switch (isCheck) {
                     case 0 :
                         ame.setIsCheck("未检查");
@@ -59,10 +59,10 @@ public class AccessManagerService {
                 }
 
                 //通行码
-                ame.setPassCode(accessManagerEntity.getPassCode());
+                ame.setPassCode(amEntity.getPassCode());
 
                  // 通行时间
-                ame.setPassCodeValidDate(accessManagerEntity.getPassCodeValidDate());
+                ame.setPassCodeValidDate(amEntity.getPassCodeValidDate());
 
                 aManagerList.add(ame);
             }
@@ -71,8 +71,8 @@ public class AccessManagerService {
         return aManagerList;
     }
 
-    public int accessManagerClubCount() {
+    public Long accessManagerClubCount(AccessManagerEntity accessManagerEntity) {
 
-        return accessManagerMapper.accessManagerClubCount();
+        return accessManagerMapper.accessManagerClubCount(accessManagerEntity);
     }
 }

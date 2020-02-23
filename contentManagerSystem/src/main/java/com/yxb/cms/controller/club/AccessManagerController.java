@@ -32,12 +32,12 @@ public class AccessManagerController {
 
     @ResponseBody
     @RequestMapping(value = "/accessManagerList")
-    public String queryClubList() {
+    public String queryClubList(AccessManagerEntity accessManagerEntity) {
         log.info("----->accessManagerList:start");
         Map<Object, Object> map = new HashMap<>();
 
-        List<AccessManagerDto> accessManagerList = accessManagerService.accessManagerList();
-        int count = accessManagerService.accessManagerClubCount();
+        List<AccessManagerDto> accessManagerList = accessManagerService.accessManagerList(accessManagerEntity);
+        Long count = accessManagerService.accessManagerClubCount(accessManagerEntity);
         map.put("code", "0");
         map.put("msg", "查询成功");
         map.put("count", count);

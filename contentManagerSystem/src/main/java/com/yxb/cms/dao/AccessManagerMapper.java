@@ -9,7 +9,7 @@ import java.util.List;
 public interface AccessManagerMapper {
 
 
-    List<AccessManagerEntity> accessManagerList();
+    List<AccessManagerEntity> selectAccessManagerListByPage(AccessManagerEntity accessManagerEntity);
 
-    int accessManagerClubCount();
+    Long accessManagerClubCount(AccessManagerEntity accessManagerEntity);
 }
