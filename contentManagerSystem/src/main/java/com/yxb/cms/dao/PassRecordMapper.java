@@ -9,7 +9,7 @@ import java.util.List;
 public interface PassRecordMapper {
 
 
-    List<PassRecordEntity> passRecordList();
+    List<PassRecordEntity> selectPassRecordListByPage(PassRecordEntity passRecordEntity);
 
-    int passRecordCount();
+    Long passRecordCount(PassRecordEntity passRecordEntity);
 }

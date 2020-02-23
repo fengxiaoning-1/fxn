@@ -1,6 +1,6 @@
 package com.yxb.cms.controller.club;
 
-import com.yxb.cms.domain.dto.AccessManagerDto;
+import com.yxb.cms.domain.vo.PassRecordEntity;
 import com.yxb.cms.domain.dto.PassRecordDto;
 import com.yxb.cms.service.PassRecordService;
 import org.apache.logging.log4j.LogManager;
@@ -32,13 +32,13 @@ public class PassRecordController {
 
     @ResponseBody
     @RequestMapping(value = "/passRecordList")
-    public String queryClubList() {
+    public String queryClubList(PassRecordEntity passRecordEntity) {
         log.info("----->passRecordList:start");
         Map<Object, Object> map = new HashMap<>();
 
 
-        List<PassRecordDto> passRecordList = passRecordService.passRecordList();
-        int count = passRecordService.passRecordCount();
+        List<PassRecordDto> passRecordList = passRecordService.passRecordList(passRecordEntity);
+        Long count = passRecordService.passRecordCount(passRecordEntity);
         map.put("code", "0");
         map.put("msg", "查询成功");
         map.put("count", count);

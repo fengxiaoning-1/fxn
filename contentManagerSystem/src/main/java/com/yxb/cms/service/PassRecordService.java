@@ -15,26 +15,26 @@ public class PassRecordService {
     @Autowired
     private PassRecordMapper passRecordMapper;
 
-    public List<PassRecordDto> passRecordList() {
+    public List<PassRecordDto> passRecordList(PassRecordEntity passRecordEntity) {
 
         List<PassRecordDto> aManagerList = new ArrayList<PassRecordDto>();
 
-        List<PassRecordEntity> passRecordList = passRecordMapper.passRecordList();
+        List<PassRecordEntity> passRecordList = passRecordMapper.selectPassRecordListByPage(passRecordEntity);
         if(passRecordList!=null && passRecordList.size()>0){
             for (int i = 0; i < passRecordList.size(); i++) {
-                PassRecordEntity passRecordEntity = passRecordList.get(i);
+                PassRecordEntity prEntity = passRecordList.get(i);
                 PassRecordDto prd = new PassRecordDto();
-                prd.setId(passRecordEntity.getId());
-                prd.setParkId(passRecordEntity.getParkId());
-                prd.setParkName(passRecordEntity.getParkName());
-                prd.setDoorName(passRecordEntity.getDoorName());
-                prd.setSentryTrueName(passRecordEntity.getSentryTrueName());
-                prd.setPassTrueName(passRecordEntity.getPassTrueName());
-                prd.setPassDate(passRecordEntity.getPassDate());
-                prd.setTemperature(passRecordEntity.getTemperature());
-                prd.setReason(passRecordEntity.getReason());
+                prd.setId(prEntity.getId());
+                prd.setParkId(prEntity.getParkId());
+                prd.setParkName(prEntity.getParkName());
+                prd.setDoorName(prEntity.getDoorName());
+                prd.setSentryTrueName(prEntity.getSentryTrueName());
+                prd.setPassTrueName(prEntity.getPassTrueName());
+                prd.setPassDate(prEntity.getPassDate());
+                prd.setTemperature(prEntity.getTemperature());
+                prd.setReason(prEntity.getReason());
 
-                Integer isIn = passRecordEntity.getIsIn();
+                Integer isIn = prEntity.getIsIn();
                 switch (isIn) {
                     case 0 :
                         prd.setIsIn("未进门");
@@ -49,7 +49,7 @@ public class PassRecordService {
                 }
 
                 //0:未审核;1:通过;2:不通过
-                Integer admit = passRecordEntity.getAdmit();
+                Integer admit = prEntity.getAdmit();
                 switch (admit) {
                     case 0:
                         prd.setAdmit("未审核");
@@ -73,8 +73,8 @@ public class PassRecordService {
         return aManagerList;
     }
 
-    public int passRecordCount() {
+    public Long passRecordCount(PassRecordEntity passRecordEntity) {
 
-        return passRecordMapper.passRecordCount();
+        return passRecordMapper.passRecordCount(passRecordEntity);
     }
 }

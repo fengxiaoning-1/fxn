@@ -25,7 +25,7 @@
                     <form class="layui-form" id="userSearchForm">
 
                         <div class="layui-input-inline" style="width:145px;">
-                            <input type="text" name="searchContent" value="" placeholder="请输入关键字" class="layui-input search_input">
+                            <input type="text" name="PassTrueName" value="" placeholder="请输入关键字" class="layui-input search_input">
                         </div>
                         <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
                     </form>
@@ -110,8 +110,8 @@
             form.on('submit(userSearchFilter)', function (data) {
                 table.reload('userTableId',{
                     where: {
-                            searchTerm:data.field.searchTerm,
-                            searchContent:data.field.searchContent
+                            PassTrueName:data.field.PassTrueName,
+                            //searchContent:data.field.searchContent
                     },
                     height: 'full-140',
                     page: true,
