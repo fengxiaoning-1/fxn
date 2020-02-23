@@ -1,10 +1,17 @@
 package com.yxb.cms.domain.vo;
 
+import com.yxb.cms.domain.dto.PageDto;
 import lombok.Data;
 
-@Data
-public class UserNewsManagerEntity {
+import java.io.Serializable;
 
+@Data
+public class UserNewsManagerEntity extends PageDto implements Serializable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * 编号
      */

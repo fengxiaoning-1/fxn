@@ -13,6 +13,7 @@
         <result column="PassCodeValidDate" property="PassCodeValidDate" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <!-- 封装的对象 -->
     <sql id="Base_Column_List" >
         <!--
           WARNING - @mbggenerated

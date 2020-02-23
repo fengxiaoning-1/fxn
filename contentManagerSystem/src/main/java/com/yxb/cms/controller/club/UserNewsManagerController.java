@@ -5,6 +5,7 @@ import com.yxb.cms.service.UserNewsManagerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.nutz.json.Json;
+import com.yxb.cms.domain.vo.UserNewsManagerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +32,13 @@ public class UserNewsManagerController {
 
     @ResponseBody
     @RequestMapping(value = "/userNewsManagerList")
-    public String queryClubList() {
+    public String queryClubList(UserNewsManagerEntity userNewsManagerEntity) {
         log.info("----->userNewsManagerList:start");
         Map<Object, Object> map = new HashMap<>();
 
 
-        List<UserNewsManagerDto> userNewsManagerList = userNewsManagerService.userNewsManagerList();
-        int count = userNewsManagerService.userNewsManagerCount();
+        List<UserNewsManagerDto> userNewsManagerList = userNewsManagerService.userNewsManagerList(userNewsManagerEntity);
+        Long count = userNewsManagerService.userNewsManagerCount(userNewsManagerEntity);
         map.put("code", "0");
         map.put("msg", "查询成功");
         map.put("count", count);

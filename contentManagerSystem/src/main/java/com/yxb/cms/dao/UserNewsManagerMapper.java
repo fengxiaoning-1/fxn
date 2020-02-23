@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserNewsManagerMapper {
 
 
-    List<UserNewsManagerEntity> userNewsManagerList();
+    List<UserNewsManagerEntity> userNewsManagerListByPage(UserNewsManagerEntity userNewsManagerEntity);
 
-    int userNewsManagerCount();
+    Long userNewsManagerCount(UserNewsManagerEntity userNewsManagerEntity);
 }

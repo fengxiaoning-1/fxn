@@ -15,11 +15,11 @@ public class UserNewsManagerService {
     @Autowired
     private UserNewsManagerMapper userNewsManagerMapper;
 
-    public List<UserNewsManagerDto> userNewsManagerList() {
+    public List<UserNewsManagerDto> userNewsManagerList(UserNewsManagerEntity userNewsManagerEntity) {
 
         List<UserNewsManagerDto> aManagerList = new ArrayList<UserNewsManagerDto>();
 
-        List<UserNewsManagerEntity> passRecordList = userNewsManagerMapper.userNewsManagerList();
+        List<UserNewsManagerEntity> passRecordList = userNewsManagerMapper.userNewsManagerListByPage(userNewsManagerEntity);
         if(passRecordList!=null && passRecordList.size()>0){
             for (int i = 0; i < passRecordList.size(); i++) {
                 UserNewsManagerEntity passRecordEntity = passRecordList.get(i);
@@ -58,8 +58,8 @@ public class UserNewsManagerService {
         return aManagerList;
     }
 
-    public int userNewsManagerCount() {
+    public Long userNewsManagerCount(UserNewsManagerEntity userNewsManagerEntity) {
 
-        return userNewsManagerMapper.userNewsManagerCount();
+        return userNewsManagerMapper.userNewsManagerCount(userNewsManagerEntity);
     }
 }
