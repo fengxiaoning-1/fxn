@@ -1,4 +1,4 @@
-package main.java.com.yxb.cms.domain.vo;
+package com.yxb.cms.domain.vo;
 public class PassRecord{
 	/**
      * 编号

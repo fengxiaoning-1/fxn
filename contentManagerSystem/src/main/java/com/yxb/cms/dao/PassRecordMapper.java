@@ -18,5 +18,5 @@ public interface PassRecordMapper {
      * @param PassRecord 出入实体
      * @return
      */
-    List<PassRecord>selectPassRecordList(PassRecord passRecord);
+    List<PassRecord> selectPassRecordList(PassRecord passRecord);
 }

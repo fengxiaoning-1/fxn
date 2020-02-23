@@ -1,6 +1,7 @@
 package com.yxb.cms.service;
 
 import com.yxb.cms.dao.PassRecordMapper;
+import com.yxb.cms.domain.bo.ExcelExport;
 import com.yxb.cms.domain.dto.PassRecordDto;
 import com.yxb.cms.domain.vo.PassRecordEntity;
 import com.yxb.cms.domain.vo.PassRecord;
@@ -82,8 +83,8 @@ public class PassRecordService {
         ExcelExport excelExport = new ExcelExport();
         List<PassRecord> passList = this.selectPassList(passRecord);
         excelExport.addColumnInfo("用户编号","ParkId");
-        excelExport.addColumnInfo("用户姓名","ParkName");
-        excelExport.addColumnInfo("工厂名称","DoorName");
+        excelExport.addColumnInfo("用户姓名","PassTrueName");
+        excelExport.addColumnInfo("工厂名称","ParkName");
         excelExport.addColumnInfo("通行时间","PassDate");
         excelExport.addColumnInfo("体温","Temperature");
         excelExport.addColumnInfo("出行理由","Reason");
@@ -100,7 +101,7 @@ public class PassRecordService {
      */
     public List<PassRecord> selectPassList(PassRecord passRecord){
 
-        List<PassRecord> passList = passRecordMapper.selectUserList(passRecord);
+        List<PassRecord> passList = passRecordMapper.selectPassRecordList(passRecord);
         if (null != passList && !passList.isEmpty()){
             for (PassRecord ps : passList) {
             	String isIn = ps.getIsIn();

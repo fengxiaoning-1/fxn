@@ -120,6 +120,12 @@
             <classifier>jdk15</classifier>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- apache shiro -->
         <dependency>
             <groupId>org.apache.shiro</groupId>

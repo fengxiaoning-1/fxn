@@ -22,20 +22,19 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <div class="layui-inline">
-                    <form class="layui-form" id="userSearchForm">
+                    <form class="layui-form" id="userSearchForm" style="float: left;margin-right: 20px;">
 
                         <div class="layui-input-inline" style="width:145px;">
-                            <input type="text" name="PassTrueName" value="" placeholder="请输入关键字" class="layui-input search_input">
+                            <input type="text" name="PassTrueName" value="" placeholder="请输入用户姓名" class="layui-input search_input">
                         </div>
                         <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
                     </form>
-               
-               <shiro:hasPermission name="0jOfTHGx">
-                    <div class="layui-inline">
-                        <a class="layui-btn layui-btn-normal excelUserExport_btn"  style="background-color:#5FB878"> <i class="layui-icon larry-icon larry-danye"></i>导出</a>
-                    </div>
-                </shiro:hasPermission>
-                
+
+                    <shiro:hasPermission name="0jOfTHGx">
+                        <div class="layui-inline">
+                            <a class="layui-btn layui-btn-normal excelUserExport_btn"  style="background-color:#5FB878"> <i class="layui-icon larry-icon larry-danye"></i>导出</a>
+                        </div>
+                    </shiro:hasPermission>
 
             </blockquote>
             <div class="larry-separate"></div>
@@ -71,13 +70,13 @@
             size: 'sm',
             cols: [[
                 /*{type:"checkbox"},*/
-                {field:'PassTrueName', title: '通行人姓名',align:'center',width: '12%'},
+                {field:'PassTrueName', title: '用户姓名',align:'center',width: '12%'},
                 {field:'ParkName', title: '工厂名称',align:'center'},
                 {field:'DoorName', title: '出入门口',align:'center'},
                 {field:'SentryTrueName', title: '门岗名称',align:'center'},
                 {field:'PassDate', title: '通行时间',align:'center'},
-                {field:'Temperature', title: '通行人体温',align:'center'},
-                {field:'Reason', title: '通行原因',align:'center'},
+                {field:'Temperature', title: '体温',align:'center'},
+                {field:'Reason', title: '出行理由',align:'center'},
                 {field:'IsIn', title: '出入状态',align:'center'},
                 {field:'Admit', title: '准许标记',align:'center'},
 

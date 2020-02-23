@@ -15,6 +15,20 @@
         <result column="IsIn" property="IsIn" jdbcType="INTEGER"/>
         <result column="Admit" property="Admit" jdbcType="INTEGER"/>
     </resultMap>
+    <resultMap id="exportMap" type="com.yxb.cms.domain.vo.PassRecord">
+        <id column="Id" property="Id" jdbcType="INTEGER"/>
+        <result column="ParkId" property="ParkId" jdbcType="INTEGER"/>
+        <result column="ParkName" property="ParkName" jdbcType="VARCHAR"/>
+        <result column="DoorId" property="DoorId" jdbcType="INTEGER"/>
+        <result column="DoorName" property="DoorName" jdbcType="VARCHAR"/>
+        <result column="SentryTrueName" property="SentryTrueName" jdbcType="VARCHAR"/>
+        <result column="PassTrueName" property="PassTrueName" jdbcType="TIMESTAMP"/>
+        <result column="PassDate" property="PassDate" jdbcType="VARCHAR"/>
+        <result column="Temperature" property="Temperature" jdbcType="VARCHAR"/>
+        <result column="Reason" property="Reason" jdbcType="VARCHAR"/>
+        <result column="IsIn" property="IsIn" jdbcType="INTEGER"/>
+        <result column="Admit" property="Admit" jdbcType="INTEGER"/>
+    </resultMap>
 
     <!-- 對象封裝 -->
     <sql id="Base_Column_List" >
@@ -52,15 +66,13 @@
         LIMIT #{start},#{limit}
     </select>
 
-
-
 	<!-- 出入List -->
-    <select id="selectUserList" parameterType="com.yxb.cms.domain.vo.PassRecord" resultMap="BaseResultMap" >
+    <select id="selectPassRecordList" parameterType="com.yxb.cms.domain.vo.PassRecord" resultMap="exportMap" >
         select
         <include refid="Base_Column_List" />
-        from cc_user
+        from biz_pass_record
         <include refid="selectPageParmas" />
-
+        order by PassDate DESC
     </select>
 
 
