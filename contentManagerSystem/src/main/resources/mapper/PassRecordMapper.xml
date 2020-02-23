@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yxb.cms.dao.PassRecordMapper">
+    <resultMap id="BaseResultMap" type="com.yxb.cms.domain.vo.PassRecordEntity">
+        <id column="Id" property="Id" jdbcType="INTEGER"/>
+        <result column="ParkId" property="ParkId" jdbcType="INTEGER"/>
+        <result column="ParkName" property="ParkName" jdbcType="VARCHAR"/>
+        <result column="DoorId" property="DoorId" jdbcType="INTEGER"/>
+        <result column="DoorName" property="DoorName" jdbcType="VARCHAR"/>
+        <result column="SentryTrueName" property="SentryTrueName" jdbcType="VARCHAR"/>
+        <result column="PassTrueName" property="PassTrueName" jdbcType="TIMESTAMP"/>
+        <result column="PassDate" property="PassDate" jdbcType="VARCHAR"/>
+        <result column="Temperature" property="Temperature" jdbcType="VARCHAR"/>
+        <result column="Reason" property="Reason" jdbcType="VARCHAR"/>
+        <result column="IsIn" property="IsIn" jdbcType="INTEGER"/>
+        <result column="Admit" property="Admit" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="passRecordList" resultMap="BaseResultMap">
+        select * from biz_pass_record
+    </select>
+
+    <select id="passRecordCount" resultType="java.lang.Integer">
+        select count(*) from biz_pass_record
+    </select>
+
+
+</mapper>

@@ -44,4 +44,7 @@ public class AccessManagerEntity {
      * PassCodeValidDate
      */
     private String PassCodeValidDate;
+
+
+
 }
