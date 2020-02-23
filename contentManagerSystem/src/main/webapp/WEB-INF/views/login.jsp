@@ -105,7 +105,7 @@
             }
         });
 
-        layer.alert('账号:user_system/123456 用户管理员<br>账号:user_readonly/123456 只读用户<br>原admin账号暂时回收');
+       // layer.alert('账号:user_system/123456 用户管理员<br>账号:user_readonly/123456 只读用户<br>原admin账号暂时回收');
     });
 
 </script>

@@ -28,16 +28,16 @@ public class AccessManagerService {
                 ame.setParkName(accessManagerEntity.getParkName());
                 String roleCode = accessManagerEntity.getRoleCode();
                 switch (roleCode) {
-                    case "0":
+                    case "admin":
                         ame.setRoleCode("管理员");
                         break;
-                    case "1":
+                    case "sentry":
                         ame.setRoleCode("执勤员");
                         break;
-                    case "10":
-                        ame.setRoleCode("家长");
+                    case "passerby":
+                        ame.setRoleCode("通勤人员通行");
                         break;
-                    case "11":ame.setRoleCode("通行人");
+                    case "visitor":ame.setRoleCode("访客");
                         break;
 
                     default:

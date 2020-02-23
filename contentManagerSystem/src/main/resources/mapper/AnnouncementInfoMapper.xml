@@ -203,7 +203,7 @@
             C.ANNOUNCEMENT_TIME			AS announcementTime
         FROM CC_ANNOUNCEMENT_INFO C
         WHERE EXISTS(
-            SELECT * FROM CC_ANNOUNCEMENT_INFO_USER B
+            SELECT * FROM cc_announcement_infouser B
               WHERE C.ANNOUNCEMENT_ID = B.ANNOUNCEMENT_ID
                 AND B.USER_ID = #{userId,jdbcType=INTEGER})
 
@@ -219,7 +219,7 @@
             C.ANNOUNCEMENT_CONTENT	    AS announcementContent,
             C.ANNOUNCEMENT_AUTHOR		AS announcementAuthor,
             C.ANNOUNCEMENT_TIME			AS announcementTime
-        FROM CC_ANNOUNCEMENT_INFO C
+        FROM cc_announcement_info C
         ORDER BY C.ANNOUNCEMENT_TIME DESC
     </select>
 
@@ -227,8 +227,8 @@
     <select id="selectUnreadAnnInfoCountByUserId" resultType="Long">
        SELECT
             COUNT(*)
-        FROM CC_ANNOUNCEMENT_INFO C
-        WHERE NOT EXISTS(SELECT * FROM CC_ANNOUNCEMENT_INFO_USER B
+        FROM cc_announcement_info C
+        WHERE NOT EXISTS(SELECT * FROM cc_announcement_info_user B
             WHERE C.ANNOUNCEMENT_ID = B.ANNOUNCEMENT_ID
                 AND B.USER_ID = #{userId,jdbcType=INTEGER})
     </select>
@@ -237,8 +237,8 @@
     <select id="selectReadAnnInfoCountByUserId" resultType="Long">
         SELECT
         COUNT(*)
-        FROM CC_ANNOUNCEMENT_INFO C
-        WHERE EXISTS(SELECT * FROM CC_ANNOUNCEMENT_INFO_USER B
+        FROM cc_announcement_info C
+        WHERE EXISTS(SELECT * FROM cc_announcement_info_user B
         WHERE C.ANNOUNCEMENT_ID = B.ANNOUNCEMENT_ID
         AND B.USER_ID = #{userId,jdbcType=INTEGER})
     </select>
