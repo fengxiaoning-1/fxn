@@ -4,9 +4,9 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>绿洲防疫后台管理系统</title>
+    <title>后台管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="绿洲防疫后台管理系统">
+    <meta name="keywords" content="后台管理系统">
     <meta name="description" content="致力于提供通用版本后台管理解决方案">
 
     <link rel="shortcut icon" href="${ctx}/static/img/favicon.ico">
@@ -22,10 +22,13 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <div class="layui-inline">
-                    <form class="layui-form" id="userSearchForm" style="float: left;margin-right: 20px;">
+                    <form class="layui-form" id="passRecordSearchForm" style="float: left;margin-right: 20px;">
 
                         <div class="layui-input-inline" style="width:145px;">
                             <input type="text" name="PassTrueName" value="" placeholder="请输入用户姓名" class="layui-input search_input">
+                        </div>
+                        <div class="layui-input-inline" style="width:300px;">
+                            <input type="text" class="layui-input" id="PassDate" name="PassDate" placeholder="请输入通行时间" readonly>
                         </div>
                         <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
                     </form>
@@ -50,14 +53,28 @@
     var $;
     layui.config({
         base : "${ctx}/static/js/"
-    }).use(['form', 'table', 'layer','common'], function () {
+    }).use(['form', 'table', 'layer','common','laydate'], function () {
          $ =  layui.$;
                 var form = layui.form,
                 table = layui.table,
                 layer = layui.layer,
+                laydate = layui.laydate;
                 common = layui.common;
 
+        /**请求时间*/
+//        laydate.render({
+//            elem: '#PassDate',
+//            theme: 'molv',
+//            value: new Date()
+//        });
+        //日期时间范围
+        laydate.render({
+            elem: '#PassDate'
+            ,type: 'datetime'
+            ,range: true
+        });
         var loading = layer.load(0,{ shade: [0.3,'#000']});
+
         /**用户表格加载*/
         table.render({
             elem: '#userTableList',
@@ -71,14 +88,17 @@
             cols: [[
                 /*{type:"checkbox"},*/
                 {field:'PassTrueName', title: '用户姓名',align:'center',width: '12%'},
-                {field:'ParkName', title: '工厂名称',align:'center'},
-                {field:'DoorName', title: '出入门口',align:'center'},
-                {field:'SentryTrueName', title: '门岗名称',align:'center'},
-                {field:'PassDate', title: '通行时间',align:'center'},
                 {field:'Temperature', title: '体温',align:'center'},
-                {field:'Reason', title: '出行理由',align:'center'},
                 {field:'IsIn', title: '出入状态',align:'center'},
-                {field:'Admit', title: '准许标记',align:'center'},
+                {field:'Admit', title: '是否通过',align:'center'},
+                {field:'PassDate', title: '出入时间',align:'center'},
+                {field:'DoorName', title: '岗亭',align:'center'},
+                {field:'PhoneNumber', title: '联系方式',align:'center'},
+                {field:'ParkName', title: '工厂',align:'center'},
+                {field:'company', title: '单位',align:'center'},
+                {field:'department', title: '部门',align:'center'},
+
+
 
                 /* {field:'updateTime', title: '修改时间',align:'center',width: '12%'},*/
                /* {title: '操作', align:'center', width: '17%',toolbar: '#userBar'}*/
@@ -101,7 +121,7 @@
                 table.reload('userTableId',{
                     where: {
                             PassTrueName:data.field.PassTrueName,
-                            //searchContent:data.field.searchContent
+                            PassDate:data.field.PassDate
                     },
                     height: 'full-140',
                     page: true,
@@ -121,8 +141,8 @@
         /**导出出入记录信息*/
         $(".excelUserExport_btn").click(function(){
             var url = '${ctx}/passRecord/excel_passRecord_export.do';
-            $("#userSearchForm").attr("action",url);
-            $("#userSearchForm").submit();
+            $("#passRecordSearchForm").attr("action",url);
+            $("#passRecordSearchForm").submit();
         });
         
         /**监听工具条*/
@@ -146,8 +166,8 @@
     {{# } else { }}
     {{d.userStatus}}
     {{# }  }}
-</script>
 
+</script>
 
 <!--工具条 -->
 <script type="text/html" id="userBar">

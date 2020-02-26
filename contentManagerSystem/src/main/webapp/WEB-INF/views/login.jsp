@@ -24,7 +24,7 @@
     </video>
     <div class="video_mask"></div>--%>
     <div class="login layui-anim layui-anim-up">
-        <h1>绿洲防疫后台管理系统</h1></p>
+        <h1>绿洲云出入管理平台</h1></p>
         <form class="layui-form" action="" method="post">
             <div class="layui-form-item">
                 <input type="text" name="username" lay-verify="required" placeholder="请输入账号" autocomplete="off"  value="" class="layui-input">

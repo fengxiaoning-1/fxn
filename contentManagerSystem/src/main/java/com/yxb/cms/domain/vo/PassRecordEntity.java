@@ -65,7 +65,27 @@ public class PassRecordEntity extends PageDto implements Serializable{
      */
     private Integer Admit;
 
+    /**
+     * 开始时间
+     */
+    private String startTime;
+    /**
+     * 结束时间
+     */
+    private String endTime;
 
+    /**
+     * 电话
+     */
+    private String PhoneNumber;
+    /**
+     * 所在单位
+     */
+    private String company;
+    /**
+     * 所在部门
+     */
+    private String department;
 
 
 }

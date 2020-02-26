@@ -1,31 +1,51 @@
 package com.yxb.cms.domain.vo;
 public class PassRecord{
+
 	/**
      * 编号
+	 * select DISTINCT b., b.,b., b.,b.,b.,b.,b.,a.,a from
+
      */
     private Integer Id;
     /**
-     *用户编号
+     *工厂ID
      */
     private Integer ParkId;
     /**
-     * 真实姓名
+	 * 工厂名称
      */
     private String ParkName;
+	/**
+	 * 电话
+	 */
+	private String PhoneNumber;
+	/**
+	 * 所在单位
+	 */
+	private String company;
+	/**
+	 * 所在部门
+	 */
+	private String department;
     /**
-     * 工厂ID
+     * 门口编号
      */
     private Integer DoorId;
     /**
-     * 工厂名称
+     * 门口名称
      */
     private String DoorName;
+	/**
+	 * 口罩发放
+	 */
+	private String raskRelease
+	;
     /**
      *角色类型
      */
     private String SentryTrueName;
     /**
-     *通行码
+     *真实姓名
      */
     private String PassTrueName;
 
@@ -33,6 +53,15 @@ public class PassRecord{
      * 同行时间
      */
     private String PassDate;
+
+	/**
+	 * 开始时间
+	 */
+	private String startTime;
+	/**
+	 * 结束时间
+	 */
+	private String endTime;
 
     /**
      * 体温
@@ -149,5 +178,52 @@ public class PassRecord{
 	public void setAdmit(String admit) {
 		Admit = admit;
 	}
-    
+
+	public String getRaskRelease() {
+		return raskRelease;
+	}
+
+	public void setRaskRelease(String raskRelease) {
+		this.raskRelease = raskRelease;
+	}
+
+	public String getPhoneNumber() {
+		return PhoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		PhoneNumber = phoneNumber;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
 }

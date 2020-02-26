@@ -51,30 +51,78 @@
     </sql>
 
     <!-- 查询角色总记录数 -->
+    <!--<select id="passRecordCount" parameterType="com.yxb.cms.domain.vo.PassRecordEntity" resultType="Long">-->
+        <!--select count(*)-->
+        <!--from biz_pass_record-->
+        <!--<include refid="selectPageParmas" />-->
+    <!--</select>-->
+
+    <!-- 查询角色总记录数 -->
     <select id="passRecordCount" parameterType="com.yxb.cms.domain.vo.PassRecordEntity" resultType="Long">
-        select count(*)
-        from biz_pass_record
-        <include refid="selectPageParmas" />
+        SELECT COUNT(1) FROM biz_pass_record as t1 left join
+        sys_user t2 on t1.PassUserId = t2.id
+        <where>
+            t2.PhoneNumber is not NULL  and t2.PhoneNumber!='undefined'
+            <if test="PassTrueName != '' and PassTrueName != null">
+                AND t1.PassTrueName = #{PassTrueName}
+            </if>
+            <if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+                and t1.PassDate <![CDATA[ >= ]]> #{startTime} and  t1.PassDate <![CDATA[ <= ]]> #{endTime}
+            </if>
+        </where>
     </select>
 
-    <select id="selectPassRecordListByPage" parameterType="com.yxb.cms.domain.vo.PassRecordEntity" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from biz_pass_record
-        <include refid="selectPageParmas" />
-        order by PassDate DESC
+    <select id="selectPassRecordListByPage" parameterType="com.yxb.cms.domain.vo.PassRecordEntity" resultMap="BaseResultMap" >
+        select DISTINCT b.PassDate, b.PhoneNumber,b.ParkName, b.PassTrueName,b.DoorName,b.Temperature,b.IsIn,b.Admit,a.company,a.department from
+        (SELECT DISTINCT t2.PhoneNumber,t1.ParkName, t1.PassTrueName,t1.PassDate,t1.DoorName,t1.Temperature,t1.IsIn,t1.Admit FROM biz_pass_record as t1 left join
+        sys_user t2 on t1.PassUserId = t2.id where t2.PhoneNumber is not NULL  and t2.PhoneNumber!='undefined') b left JOIN biz_epidemic a
+        on a.phone_number = b.PhoneNumber
+        <where>
+            <if test="PassTrueName != '' and PassTrueName != null">
+                AND b.PassTrueName = #{PassTrueName}
+            </if>
+            <if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+                and b.PassDate <![CDATA[ >= ]]> #{startTime} and  b.PassDate <![CDATA[ <= ]]> #{endTime}
+            </if>
+        </where>
+        order by b.PassDate DESC
         LIMIT #{start},#{limit}
     </select>
 
-	<!-- 出入List -->
-    <select id="selectPassRecordList" parameterType="com.yxb.cms.domain.vo.PassRecord" resultMap="exportMap" >
-        select
-        <include refid="Base_Column_List" />
-        from biz_pass_record
-        <include refid="selectPageParmas" />
-        order by PassDate DESC
-    </select>
+    <!--<select id="selectPassRecordListByPage" parameterType="com.yxb.cms.domain.vo.PassRecordEntity" resultMap="BaseResultMap">-->
+        <!--select-->
+        <!--<include refid="Base_Column_List"/>-->
+        <!--from biz_pass_record-->
+        <!--<include refid="selectPageParmas" />-->
+        <!--order by PassDate DESC-->
+        <!--LIMIT #{start},#{limit}-->
+    <!--</select>-->
 
+	<!-- 出入List -->
+    <!--<select id="selectPassRecordList" parameterType="com.yxb.cms.domain.vo.PassRecord" resultMap="exportMap" >-->
+        <!--select-->
+        <!--<include refid="Base_Column_List" />-->
+        <!--from biz_pass_record-->
+        <!--<include refid="selectPageParmas" />-->
+        <!--order by PassDate DESC-->
+    <!--</select>-->
+
+    <!-- 出入List -->
+    <select id="selectPassRecordList" parameterType="com.yxb.cms.domain.vo.PassRecord" resultMap="exportMap" >
+        select DISTINCT b.PassDate, b.PhoneNumber,b.ParkName, b.PassTrueName,b.DoorName,b.Temperature,b.IsIn,b.Admit,a.company,a.department from
+        (SELECT DISTINCT t2.PhoneNumber,t1.ParkName, t1.PassTrueName,t1.PassDate,t1.DoorName,t1.Temperature,t1.IsIn,t1.Admit FROM biz_pass_record as t1 left join
+        sys_user t2 on t1.PassUserId = t2.id where t2.PhoneNumber is not NULL  and t2.PhoneNumber!='undefined') b left JOIN biz_epidemic a
+        on a.phone_number = b.PhoneNumber
+        <where>
+            <if test="PassTrueName != '' and PassTrueName != null">
+                AND b.PassTrueName = #{PassTrueName}
+            </if>
+            <if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+                and b.PassDate <![CDATA[ >= ]]> #{startTime} and  b.PassDate <![CDATA[ <= ]]> #{endTime}
+            </if>
+        </where>
+        order by b.PassDate DESC
+    </select>
 
 
 

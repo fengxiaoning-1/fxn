@@ -10,6 +10,18 @@ public class PassRecordDto {
      */
     private Integer Id;
     /**
+     * 电话
+     */
+    private String PhoneNumber;
+    /**
+     * 所在单位
+     */
+    private String company;
+    /**
+     * 所在部门
+     */
+    private String department;
+    /**
      *用户编号
      */
     private Integer ParkId;
@@ -155,7 +167,32 @@ public class PassRecordDto {
         Admit = admit;
     }
 
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     @Override
+
     public String toString() {
         return "PassRecordDto{" +
                 "Id=" + Id +

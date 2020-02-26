@@ -26,15 +26,18 @@ public class PassRecordService {
             for (int i = 0; i < passRecordList.size(); i++) {
                 PassRecordEntity prEntity = passRecordList.get(i);
                 PassRecordDto prd = new PassRecordDto();
-                prd.setId(prEntity.getId());
-                prd.setParkId(prEntity.getParkId());
+                prd.setPhoneNumber(prEntity.getPhoneNumber());
+                prd.setCompany(prEntity.getCompany());
+                prd.setDepartment(prEntity.getDepartment());
+//                prd.setId(prEntity.getId());
+//                prd.setParkId(prEntity.getParkId());
                 prd.setParkName(prEntity.getParkName());
                 prd.setDoorName(prEntity.getDoorName());
-                prd.setSentryTrueName(prEntity.getSentryTrueName());
+//                prd.setSentryTrueName(prEntity.getSentryTrueName());
                 prd.setPassTrueName(prEntity.getPassTrueName());
                 prd.setPassDate(prEntity.getPassDate());
                 prd.setTemperature(prEntity.getTemperature());
-                prd.setReason(prEntity.getReason());
+//                prd.setReason(prEntity.getReason());
 
                 Integer isIn = prEntity.getIsIn();
                 switch (isIn) {
@@ -81,15 +84,21 @@ public class PassRecordService {
      */
     public ExcelExport excelExportPassRecordList(PassRecord passRecord){
         ExcelExport excelExport = new ExcelExport();
+        //、、、、、、、、、、
         List<PassRecord> passList = this.selectPassList(passRecord);
-        excelExport.addColumnInfo("用户编号","ParkId");
-        excelExport.addColumnInfo("用户姓名","PassTrueName");
-        excelExport.addColumnInfo("工厂名称","ParkName");
-        excelExport.addColumnInfo("通行时间","PassDate");
+        excelExport.addColumnInfo("姓名","PassTrueName");
         excelExport.addColumnInfo("体温","Temperature");
-        excelExport.addColumnInfo("出行理由","Reason");
         excelExport.addColumnInfo("出入状态","IsIn");
-        excelExport.addColumnInfo("修改时间","Admit");
+        excelExport.addColumnInfo("是否通过","Admit");
+        excelExport.addColumnInfo("出入时间","PassDate");
+        excelExport.addColumnInfo("岗亭","DoorName");
+        excelExport.addColumnInfo("联系方式","PhoneNumber");
+        excelExport.addColumnInfo("工厂","ParkName");
+        excelExport.addColumnInfo("单位","company");
+        excelExport.addColumnInfo("部门","department");
+
+
+
 
         excelExport.setDataList(passList);
         return excelExport;
@@ -104,6 +113,7 @@ public class PassRecordService {
         List<PassRecord> passList = passRecordMapper.selectPassRecordList(passRecord);
         if (null != passList && !passList.isEmpty()){
             for (PassRecord ps : passList) {
+              //  ps.setRaskRelease("已发放");
             	String isIn = ps.getIsIn();
                 switch (isIn) {
                     case "0" :
