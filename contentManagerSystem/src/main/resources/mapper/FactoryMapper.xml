@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yxb.cms.dao.FactoryMapper" >
+  <resultMap id="BaseResultMap" type="com.yxb.cms.domain.vo.Factory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="modifier_time" property="modifierTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, creator, create_time, modifier, modifier_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_factory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.yxb.cms.domain.vo.Factory" >
+    insert into sys_factory (id, name, factory_id, 
+      creator, create_time, modifier, modifier_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{factoryId,jdbcType=INTEGER}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifier,jdbcType=VARCHAR}, #{modifierTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxb.cms.domain.vo.Factory" >
+    insert into sys_factory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="modifierTime != null" >
+        modifier_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierTime != null" >
+        #{modifierTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxb.cms.domain.vo.Factory" >
+    update sys_factory
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierTime != null" >
+        modifier_time = #{modifierTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 查询角色总记录数 -->
+    <select id="selectCount" parameterType="com.yxb.cms.domain.vo.Factory" resultType="Long">
+        select count(*)
+        from sys_factory
+        <include refid="selectPageParmas" />
+    </select>
+    <!-- 角色列表信息分页显示 -->
+    <select id="selectFactoryListByPage" parameterType="com.yxb.cms.domain.vo.Factory" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_factory
+        <include refid="selectPageParmas" />
+        order by create_time DESC
+        LIMIT #{start},#{limit}
+    </select>
+
+    <!-- 角色列表信息List -->
+    <select id="selectFactoryList" parameterType="com.yxb.cms.domain.vo.Factory" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from sys_factory
+       	<where>
+       		<if test="name != null" >
+        		name = #{name,jdbcType=VARCHAR},
+      		</if>
+       	</where>
+
+    </select>
+
+    <!-- 分页查询条件 -->
+    <sql id="selectPageParmas">
+        <where>
+            <if test="searchTerm != null and searchTerm != '' and searchContent != null and  searchContent != '' and  searchTerm == 'roleNameTerm' ">
+                AND  name LIKE CONCAT('%', #{searchContent,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </sql>
+
+    <!-- 验证名称唯一性 -->
+    <select id="selectNameCheck" resultType="java.lang.Long">
+        select count(*) from sys_factory
+        <where>
+            <if test="name != null and name != '' " >
+                AND name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="id != null">
+                AND id != #{id,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+  
+ </mapper>

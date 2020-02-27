@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yxb.cms.dao.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.yxb.cms.domain.vo.Department" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="factory_id" property="factoryId" jdbcType="INTEGER" />
+    <result column="factory_name" property="factoryName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="modifier_time" property="modifierTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+    id, name, factory_id, parent_id, level, creator, create_time, modifier, modifier_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_department
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.yxb.cms.domain.vo.Department" >
+    insert into sys_department (id, name, factory_id,  parent_id, level,
+      creator, create_time, modifier, modifier_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{factoryId,jdbcType=INTEGER}, 
+       #{parentId,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifier,jdbcType=VARCHAR}, #{modifierTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxb.cms.domain.vo.Department" >
+    insert into sys_department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="factoryId != null" >
+        factory_id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="modifierTime != null" >
+        modifier_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryId != null" >
+        #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierTime != null" >
+        #{modifierTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxb.cms.domain.vo.Department" >
+    update sys_department
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryId != null" >
+        factory_id = #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierTime != null" >
+        modifier_time = #{modifierTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 查询角色总记录数 -->
+    <select id="selectCount" parameterType="com.yxb.cms.domain.vo.Department" resultType="Long">
+        select count(*)
+        from sys_department
+        <include refid="selectPageParmas" />
+    </select>
+    <!-- 角色列表信息分页显示 -->
+    <select id="selectDepartmentListByPage" parameterType="com.yxb.cms.domain.vo.Department" resultMap="BaseResultMap">
+        select
+        sys_department.id, sys_department.name, factory_id,sys_factory.name as factory_name, parent_id, level,
+         sys_department.creator, sys_department.create_time, sys_department.modifier, sys_department.modifier_time
+        from sys_department left join sys_factory 
+        on sys_department.factory_id = sys_factory.id
+        <include refid="selectPageParmas" />
+        order by sys_department.create_time DESC
+        LIMIT #{start},#{limit}
+    </select>
+
+    <!-- 部门列表信息List -->
+    <select id="selectDepartmentList" parameterType="com.yxb.cms.domain.vo.Department" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from sys_department
+        <where>
+        	<if test="factoryId != null" >
+        		factory_id = #{factoryId,jdbcType=INTEGER},
+	      	</if>
+	      	<if test="parentId != null" >
+	        	parent_id = #{parentId,jdbcType=INTEGER},
+	      	</if>
+	      	<if test="level != null" >
+	        	level = #{level,jdbcType=INTEGER}
+	      	</if>
+        </where>
+
+    </select>
+
+    <!-- 分页查询条件 -->
+    <sql id="selectPageParmas">
+        <where>
+            <if test="searchTerm != null and searchTerm != '' and searchContent != null and  searchContent != '' and  searchTerm == 'roleNameTerm' ">
+                AND  name LIKE CONCAT('%', #{searchContent,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </sql>
+
+    <!-- 验证名称唯一性 -->
+    <select id="selectNameCheck" resultType="java.lang.Long">
+        select count(*) from sys_department
+        <where>
+            <if test="name != null and name != '' " >
+                AND name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="id != null">
+                AND id != #{id,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+  
+ </mapper>
