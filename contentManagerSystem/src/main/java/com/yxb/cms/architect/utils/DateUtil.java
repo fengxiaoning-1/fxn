@@ -38,8 +38,10 @@ import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.util.StringUtils;
 
@@ -508,4 +510,55 @@ public class DateUtil {
 		public static Date formatDateStirng(String dateStr) throws ParseException{
 			return toDate(dateStr, DEFAULT_DATETIME_FORMAT);
 		}
+
+	/**
+	 *
+	 * @Title: strDate
+	 * @Description: 转为yyyy-MM-dd HH:mm的字符串格式
+	 * @author songzhipeng
+	 * @param @param date
+	 * @param @return
+	 * @return String
+	 * @throws
+	 */
+	public static String strDate(String date){
+		String returnstr = "";
+		if(notEmpty(date)){
+			returnstr = date.trim();
+			returnstr = returnstr.replaceAll("/", "-");
+		}
+		return returnstr;
+	}
+
+	/**
+	 * 检测字符串是否不为空(null,"","null")
+	 * @param s
+	 * @return 不为空则返回true，否则返回false
+	 */
+	public static boolean notEmpty(String s){
+		return s!=null && !"".equals(s) && !"null".equals(s);
+	}
+
+	/**
+	 *
+	 * @Title: str2StringList
+	 * @Description: 返回字符串时间list
+	 * @author songzhipeng
+	 * @param @param date timeZone时间区域
+	 * @param @return
+	 * @return List<String>
+	 * @throws
+	 */
+	public static List<String> str2StringList(String date){
+		String[] dateArr = date.split(" - ");
+		if(null != dateArr&&dateArr.length==2){
+			List<String> dateList = new ArrayList<String>();
+			String startDate = DateUtil.strDate(dateArr[0]);
+			dateList.add(startDate);
+			String endDate = DateUtil.strDate(dateArr[1]);
+			dateList.add(endDate);
+			return dateList;
+		}
+		return null;
+	}
 }

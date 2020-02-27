@@ -1,6 +1,7 @@
 package com.yxb.cms.controller.club;
 
 import com.yxb.cms.architect.utils.CommonHelper;
+import com.yxb.cms.architect.utils.DateUtil;
 import com.yxb.cms.domain.bo.ExcelExport;
 import com.yxb.cms.domain.vo.PassRecord;
 import com.yxb.cms.domain.vo.PassRecordEntity;
@@ -44,9 +45,9 @@ public class PassRecordController {
         String passDate = passRecordEntity.getPassDate();
         if(passDate!=null&&passDate!=""){
             String[] dateArr = passDate.split(" - ");
-            String startTime = strDate(dateArr[0]);
+            String startTime = DateUtil.strDate(dateArr[0]);
             passRecordEntity.setStartTime(startTime);
-            String endTime = strDate(dateArr[1]);
+            String endTime = DateUtil.strDate(dateArr[1]);
             passRecordEntity.setEndTime(endTime);
         }
 
@@ -65,66 +66,22 @@ public class PassRecordController {
      */
     @RequestMapping("/excel_passRecord_export.do")
     public ModelAndView excelPassRecordExport(PassRecord passRecord){
+
+        //默认得到查询时间
         String passDate = passRecord.getPassDate();
         if(passDate!=null&&passDate!=""){
             String[] dateArr = passDate.split(" - ");
-            String startTime = strDate(dateArr[0]);
+            String startTime = DateUtil.strDate(dateArr[0]);
             passRecord.setStartTime(startTime);
-            String endTime = strDate(dateArr[1]);
+            String endTime = DateUtil.strDate(dateArr[1]);
             passRecord.setEndTime(endTime);
         }
+
         ExcelExport excelExport = passRecordService.excelExportPassRecordList(passRecord);
         return CommonHelper.getExcelModelAndView(excelExport);
     }
 
-    /**
-     *
-     * @Title: str2StringList
-     * @Description: 返回字符串时间list
-     * @author songzhipeng
-     * @param @param date timeZone时间区域
-     * @param @return
-     * @return List<String>
-     * @throws
-     */
-    public static List<String> str2StringList(String date){
-        String[] dateArr = date.split(" - ");
-        if(null != dateArr&&dateArr.length==2){
-            List<String> dateList = new ArrayList<String>();
-            String startDate = strDate(dateArr[0]);
-            dateList.add(startDate);
-            String endDate = strDate(dateArr[1]);
-            dateList.add(endDate);
-            return dateList;
-        }
-        return null;
-    }
 
-    /**
-     *
-     * @Title: strDate
-     * @Description: 转为yyyy-MM-dd HH:mm的字符串格式
-     * @author songzhipeng
-     * @param @param date
-     * @param @return
-     * @return String
-     * @throws
-     */
-    public static String strDate(String date){
-        String returnstr = "";
-        if(notEmpty(date)){
-            returnstr = date.trim();
-            returnstr = returnstr.replaceAll("/", "-");
-        }
-        return returnstr;
-    }
 
-    /**
-     * 检测字符串是否不为空(null,"","null")
-     * @param s
-     * @return 不为空则返回true，否则返回false
-     */
-    public static boolean notEmpty(String s){
-        return s!=null && !"".equals(s) && !"null".equals(s);
-    }
+
 }

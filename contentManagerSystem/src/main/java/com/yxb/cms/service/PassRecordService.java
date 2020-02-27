@@ -86,16 +86,19 @@ public class PassRecordService {
         ExcelExport excelExport = new ExcelExport();
         //、、、、、、、、、、
         List<PassRecord> passList = this.selectPassList(passRecord);
-        excelExport.addColumnInfo("姓名","PassTrueName");
-        excelExport.addColumnInfo("体温","Temperature");
-        excelExport.addColumnInfo("出入状态","IsIn");
-        excelExport.addColumnInfo("是否通过","Admit");
-        excelExport.addColumnInfo("出入时间","PassDate");
-        excelExport.addColumnInfo("岗亭","DoorName");
-        excelExport.addColumnInfo("联系方式","PhoneNumber");
         excelExport.addColumnInfo("工厂","ParkName");
         excelExport.addColumnInfo("单位","company");
         excelExport.addColumnInfo("部门","department");
+        excelExport.addColumnInfo("姓名","PassTrueName");
+        excelExport.addColumnInfo("联系方式","PhoneNumber");
+        excelExport.addColumnInfo("出入时间","PassDate");
+        excelExport.addColumnInfo("岗亭","DoorName");
+        excelExport.addColumnInfo("出入状态","IsIn");
+        excelExport.addColumnInfo("体温","Temperature");
+        excelExport.addColumnInfo("是否通过","Admit");
+
+
+
 
 
 

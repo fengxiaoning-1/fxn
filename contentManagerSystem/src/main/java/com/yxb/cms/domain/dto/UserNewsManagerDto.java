@@ -15,10 +15,6 @@ public class UserNewsManagerDto {
     /**
      *
      */
-    private Integer IdCard;
-    /**
-     *
-     */
     private String NickName;
     /**
      *
@@ -29,16 +25,17 @@ public class UserNewsManagerDto {
      * 用户性别. 0：未知；1：男性；2：女性。
      */
     private String Gender;
-    private String Country;
-    private String Province;
-    private String Language;
-    private String PhoneNumber;
-    private String City;
-    private String DefaultRoleCode;
-    private String HasEpidemic;
-    private String SessionKey;
 
-    private Integer DefaultParkId;
+    private String ParkName;
+    private String company;
+
+
+
+    private String department;
+    private String idCard;
+    private String phoneNumber;
+    private String permanentAddress;
+    private String address;
 
     public Integer getId() {
         return Id;
@@ -56,12 +53,32 @@ public class UserNewsManagerDto {
         TrueName = trueName;
     }
 
-    public Integer getIdCard() {
-        return IdCard;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
-    public void setIdCard(Integer idCard) {
-        IdCard = idCard;
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPermanentAddress() {
+        return permanentAddress;
+    }
+
+    public void setPermanentAddress(String permanentAddress) {
+        this.permanentAddress = permanentAddress;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getNickName() {
@@ -88,97 +105,45 @@ public class UserNewsManagerDto {
         Gender = gender;
     }
 
-    public String getCountry() {
-        return Country;
+    public String getParkName() {
+        return ParkName;
     }
 
-    public void setCountry(String country) {
-        Country = country;
+    public void setParkName(String parkName) {
+        ParkName = parkName;
     }
 
-    public String getProvince() {
-        return Province;
+    public String getCompany() {
+        return company;
     }
 
-    public void setProvince(String province) {
-        Province = province;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
-    public String getLanguage() {
-        return Language;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setLanguage(String language) {
-        Language = language;
+    public void setDepartment(String department) {
+        this.department = department;
     }
-
-    public String getPhoneNumber() {
-        return PhoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
-    }
-
-    public String getCity() {
-        return City;
-    }
-
-    public void setCity(String city) {
-        City = city;
-    }
-
-    public String getDefaultRoleCode() {
-        return DefaultRoleCode;
-    }
-
-    public void setDefaultRoleCode(String defaultRoleCode) {
-        DefaultRoleCode = defaultRoleCode;
-    }
-
-    public String getHasEpidemic() {
-        return HasEpidemic;
-    }
-
-    public void setHasEpidemic(String hasEpidemic) {
-        HasEpidemic = hasEpidemic;
-    }
-
-    public String getSessionKey() {
-        return SessionKey;
-    }
-
-    public void setSessionKey(String sessionKey) {
-        SessionKey = sessionKey;
-    }
-
-    public Integer getDefaultParkId() {
-        return DefaultParkId;
-    }
-
-    public void setDefaultParkId(Integer defaultParkId) {
-        DefaultParkId = defaultParkId;
-    }
-
 
     @Override
     public String toString() {
         return "UserNewsManagerDto{" +
                 "Id=" + Id +
                 ", TrueName='" + TrueName + '\'' +
-                ", IdCard=" + IdCard +
                 ", NickName='" + NickName + '\'' +
                 ", OpenId='" + OpenId + '\'' +
                 ", Gender='" + Gender + '\'' +
-                ", Country='" + Country + '\'' +
-                ", Province='" + Province + '\'' +
-                ", Language='" + Language + '\'' +
-                ", PhoneNumber='" + PhoneNumber + '\'' +
-                ", City='" + City + '\'' +
-                ", DefaultRoleCode='" + DefaultRoleCode + '\'' +
-                ", HasEpidemic='" + HasEpidemic + '\'' +
-                ", SessionKey='" + SessionKey + '\'' +
-                ", DefaultParkId=" + DefaultParkId +
+                ", ParkName='" + ParkName + '\'' +
+                ", company='" + company + '\'' +
+                ", department='" + department + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", permanentAddress='" + permanentAddress + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

@@ -25,12 +25,20 @@
                     <form class="layui-form" id="passRecordSearchForm" style="float: left;margin-right: 20px;">
 
                         <div class="layui-input-inline" style="width:145px;">
-                            <input type="text" name="PassTrueName" value="" placeholder="请输入用户姓名" class="layui-input search_input">
+                            <input type="text" id="PassTrueName" name="PassTrueName" value="" placeholder="请输入用户姓名" class="layui-input search_input">
                         </div>
+                        <%--<div class="layui-input-inline" style="width:145px;">--%>
+                            <%--<input type="text" id="company" name="company" value="" placeholder="请输入单位" class="layui-input search_input">--%>
+                        <%--</div>--%>
+                        <%--<div class="layui-input-inline" style="width:145px;">--%>
+                            <%--<input type="text" id="department" name="department" value="" placeholder="请输入部门" class="layui-input search_input">--%>
+                        <%--</div>--%>
                         <div class="layui-input-inline" style="width:300px;">
-                            <input type="text" class="layui-input" id="PassDate" name="PassDate" placeholder="请输入通行时间" readonly>
+                            <input type="text" id="PassDate" name="PassDate" placeholder="请输入出入时间" readonly class="layui-input">
                         </div>
                         <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
+                        <a class="layui-btn clearDateList_btn" lay-submit lay-filter="clearDateFilter"><i class="layui-icon larry-icon larry-chaxun14"></i>清空</a>
+
                     </form>
 
                     <shiro:hasPermission name="0jOfTHGx">
@@ -87,19 +95,16 @@
             size: 'sm',
             cols: [[
                 /*{type:"checkbox"},*/
-                {field:'PassTrueName', title: '用户姓名',align:'center',width: '12%'},
-                {field:'Temperature', title: '体温',align:'center'},
-                {field:'IsIn', title: '出入状态',align:'center'},
-                {field:'Admit', title: '是否通过',align:'center'},
-                {field:'PassDate', title: '出入时间',align:'center'},
-                {field:'DoorName', title: '岗亭',align:'center'},
-                {field:'PhoneNumber', title: '联系方式',align:'center'},
                 {field:'ParkName', title: '工厂',align:'center'},
                 {field:'company', title: '单位',align:'center'},
                 {field:'department', title: '部门',align:'center'},
-
-
-
+                {field:'PassTrueName', title: '用户姓名',align:'center',width: '12%'},
+                {field:'PhoneNumber', title: '联系方式',align:'center'},
+                {field:'PassDate', title: '出入时间',align:'center'},
+                {field:'DoorName', title: '岗亭',align:'center'},
+                {field:'IsIn', title: '出入状态',align:'center'},
+                {field:'Temperature', title: '体温',align:'center'},
+                {field:'Admit', title: '是否通过',align:'center'},
                 /* {field:'updateTime', title: '修改时间',align:'center',width: '12%'},*/
                /* {title: '操作', align:'center', width: '17%',toolbar: '#userBar'}*/
             ]],
@@ -114,7 +119,6 @@
         /**查询*/
         $(".userSearchList_btn").click(function(){
 
-            debugger
             var loading = layer.load(0,{ shade: [0.3,'#000000']});
             //监听提交
             form.on('submit(userSearchFilter)', function (data) {
@@ -122,6 +126,8 @@
                     where: {
                             PassTrueName:data.field.PassTrueName,
                             PassDate:data.field.PassDate
+//                            company:data.field.company,
+//                            department:data.field.department
                     },
                     height: 'full-140',
                     page: true,
@@ -131,9 +137,14 @@
 
                     }
                 });
-
             });
+        });
 
+        /**清空数据*/
+        $(".clearDateList_btn").click(function(){
+
+            $("#PassTrueName").val("");
+            $("#PassDate").val("");
         });
 
        
@@ -183,7 +194,6 @@
         </shiro:hasPermission>
     </div>
 </script>
-
 
 
 </body>

@@ -23,33 +23,9 @@ public class UserNewsManagerService {
         if(passRecordList!=null && passRecordList.size()>0){
             for (int i = 0; i < passRecordList.size(); i++) {
                 UserNewsManagerEntity passRecordEntity = passRecordList.get(i);
-                UserNewsManagerDto prd = new UserNewsManagerDto();
-                prd.setId(passRecordEntity.getId());
-                prd.setTrueName(passRecordEntity.getTrueName());
-                prd.setNickName(passRecordEntity.getNickName());
 
-                prd.setPhoneNumber(passRecordEntity.getPhoneNumber());
-                prd.setDefaultRoleCode(passRecordEntity.getDefaultRoleCode());
-
-                /**
-                 * 用户性别. 0：未知；1：男性；2：女性。
-                 */
-                Integer gender = passRecordEntity.getGender();
-                switch (gender) {
-                    case 0 :
-                        prd.setGender("未知");
-                        break;
-                    case 1 :
-                        prd.setGender("男性");
-                        break;
-                    case 2 :
-                        prd.setGender("女性");
-                        break;
-
-                    default:
-                        prd.setGender("未知");
-                        break;
-                }
+                //得到对象
+                UserNewsManagerDto prd  = getUserNewsManagerDtoObj(passRecordEntity);
 
                 aManagerList.add(prd);
             }
@@ -62,4 +38,32 @@ public class UserNewsManagerService {
 
         return userNewsManagerMapper.userNewsManagerCount(userNewsManagerEntity);
     }
+
+    //拿到对象
+   public  UserNewsManagerDto getUserNewsManagerDtoObj(UserNewsManagerEntity passRecordEntity){
+       UserNewsManagerDto prd = new UserNewsManagerDto();
+       prd.setId(passRecordEntity.getId());
+       prd.setTrueName(passRecordEntity.getTrueName());
+       prd.setCompany(passRecordEntity.getCompany());
+       prd.setParkName(passRecordEntity.getParkName());
+       prd.setDepartment(passRecordEntity.getDepartment());
+       prd.setPhoneNumber(passRecordEntity.getPhoneNumber());
+       prd.setPermanentAddress(passRecordEntity.getPermanentAddress());
+       prd.setAddress(passRecordEntity.getAddress());
+       prd.setIdCard(passRecordEntity.getIdCard());
+
+       return prd;
+   }
+
+
+
+
+
+
+
+
+
+
+
+
 }

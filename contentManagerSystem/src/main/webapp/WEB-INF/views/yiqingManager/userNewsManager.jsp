@@ -23,11 +23,18 @@
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <div class="layui-inline">
                     <form class="layui-form" id="userSearchForm">
-
                         <div class="layui-input-inline" style="width:145px;">
-                            <input type="text" name="TrueName" value="" placeholder="请输入姓名" class="layui-input search_input">
+                            <input type="text" id="company" name="company" value="" placeholder="请输入单位" class="layui-input search_input">
                         </div>
+                        <div class="layui-input-inline" style="width:145px;">
+                            <input type="text" id="department" name="department" value="" placeholder="请输入部门" class="layui-input search_input">
+                        </div>
+                        <div class="layui-input-inline" style="width:145px;">
+                            <input type="text" id="TrueName" name="TrueName" value="" placeholder="请输入姓名" class="layui-input search_input">
+                        </div>
+
                         <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
+                        <a class="layui-btn clearDateList_btn" lay-submit lay-filter="clearDateFilter"><i class="layui-icon larry-icon larry-chaxun14"></i>清空</a>
                     </form>
                 </div>
              <%--   <shiro:hasPermission name="0rbT8t2P">
@@ -80,13 +87,14 @@
             size: 'sm',
             cols: [[
                 /*{type:"checkbox"},*/
-                {field:'TrueName', title: '姓名',align:'center',width: '12%'},
-                {field:'NickName', title: '昵称',align:'center'},
-                {field:'Gender', title: '性别',align:'center'},
-                {field:'PhoneNumber', title: '联系方式',align:'center'},
-                {field:'DefaultRoleCode', title: '用户角色',align:'center'},
-//                {field:'Temperature', title: '通行人体温',align:'center'},
-//                {field:'Reason', title: '通行原因',align:'center'},
+                {field:'ParkName', title: '工厂',align:'center',width: '12%'},
+                {field:'company', title: '单位',align:'center'},
+                {field:'department', title: '部门',align:'center'},
+                {field:'TrueName', title: '姓名',align:'center'},
+                {field:'phoneNumber', title: '联系方式',align:'center'},
+                {field:'idCard', title: '身份证',align:'center'},
+                {field:'permanentAddress', title: '住址',align:'center'},
+                {field:'address', title: '户籍',align:'center'},
 //                {field:'IsIn', title: '出入状态',align:'center'},
 //                {field:'Admit', title: '准许标记',align:'center'},
 
@@ -111,7 +119,8 @@
                 table.reload('userTableId',{
                     where: {
                             TrueName:data.field.TrueName,
-                            //earchContent:data.field.searchContent
+                            company:data.field.company,
+                            department:data.field.department
                     },
                     height: 'full-140',
                     page: true,
@@ -124,6 +133,14 @@
 
             });
 
+        });
+
+        /**清空数据*/
+        $(".clearDateList_btn").click(function(){
+
+            $("#TrueName").val("");
+            $("#company").val("");
+            $("#department").val("");
         });
 
         /**新增用户*/

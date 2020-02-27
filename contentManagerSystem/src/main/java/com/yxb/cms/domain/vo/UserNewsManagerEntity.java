@@ -22,10 +22,6 @@ public class UserNewsManagerEntity extends PageDto implements Serializable {
      */
     private String TrueName;
     /**
-     * 工厂ID
-     */
-    private Integer IdCard;
-    /**
      * 工厂名称
      */
     private String NickName;
@@ -34,18 +30,13 @@ public class UserNewsManagerEntity extends PageDto implements Serializable {
      */
     private String OpenId;
 
-    private Integer Gender;
-    private String Country;
-    private String Province;
-    private String Language;
-    private String PhoneNumber;
-    private String City;
-    private String DefaultRoleCode;
-    private String HasEpidemic;
-    private String SessionKey;
-    private String AvatarUrl;
-
-    private Integer DefaultParkId;
+    private String ParkName;
+    private String company;
+    private String department;
+    private String idCard;
+    private String phoneNumber;
+    private String permanentAddress;
+    private String address;
 
 
 
