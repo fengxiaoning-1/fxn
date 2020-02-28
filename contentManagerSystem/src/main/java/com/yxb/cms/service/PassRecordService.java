@@ -42,10 +42,10 @@ public class PassRecordService {
                 Integer isIn = prEntity.getIsIn();
                 switch (isIn) {
                     case 0 :
-                        prd.setIsIn("未进门");
+                        prd.setIsIn("出");
                         break;
                     case 1 :
-                        prd.setIsIn("已进门");
+                        prd.setIsIn("入");
                         break;
 
                     default:
@@ -120,10 +120,10 @@ public class PassRecordService {
             	String isIn = ps.getIsIn();
                 switch (isIn) {
                     case "0" :
-                    	ps.setIsIn("未进门");
+                    	ps.setIsIn("出");
                         break;
                     case "1" :
-                    	ps.setIsIn("已进门");
+                    	ps.setIsIn("入");
                         break;
 
                     default:

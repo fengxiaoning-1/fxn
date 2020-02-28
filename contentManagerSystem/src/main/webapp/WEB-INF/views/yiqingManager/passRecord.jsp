@@ -25,14 +25,14 @@
                     <form class="layui-form" id="passRecordSearchForm" style="float: left;margin-right: 20px;">
 
                         <div class="layui-input-inline" style="width:145px;">
+                            <input type="text" id="company" name="company" value="" placeholder="请输入单位" class="layui-input search_input">
+                        </div>
+                        <div class="layui-input-inline" style="width:145px;">
+                            <input type="text" id="department" name="department" value="" placeholder="请输入部门" class="layui-input search_input">
+                        </div>
+                        <div class="layui-input-inline" style="width:145px;">
                             <input type="text" id="PassTrueName" name="PassTrueName" value="" placeholder="请输入用户姓名" class="layui-input search_input">
                         </div>
-                        <%--<div class="layui-input-inline" style="width:145px;">--%>
-                            <%--<input type="text" id="company" name="company" value="" placeholder="请输入单位" class="layui-input search_input">--%>
-                        <%--</div>--%>
-                        <%--<div class="layui-input-inline" style="width:145px;">--%>
-                            <%--<input type="text" id="department" name="department" value="" placeholder="请输入部门" class="layui-input search_input">--%>
-                        <%--</div>--%>
                         <div class="layui-input-inline" style="width:300px;">
                             <input type="text" id="PassDate" name="PassDate" placeholder="请输入出入时间" readonly class="layui-input">
                         </div>
@@ -125,9 +125,9 @@
                 table.reload('userTableId',{
                     where: {
                             PassTrueName:data.field.PassTrueName,
-                            PassDate:data.field.PassDate
-//                            company:data.field.company,
-//                            department:data.field.department
+                            PassDate:data.field.PassDate,
+                            company:data.field.company,
+                            department:data.field.department
                     },
                     height: 'full-140',
                     page: true,
@@ -145,6 +145,8 @@
 
             $("#PassTrueName").val("");
             $("#PassDate").val("");
+            $("#company").val("");
+            $("#department").val("");
         });
 
        

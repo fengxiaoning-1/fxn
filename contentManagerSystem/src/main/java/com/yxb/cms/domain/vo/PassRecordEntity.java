@@ -87,5 +87,167 @@ public class PassRecordEntity extends PageDto implements Serializable{
      */
     private String department;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
+    public Integer getId() {
+        return Id;
+    }
+
+    public void setId(Integer id) {
+        Id = id;
+    }
+
+    public Integer getParkId() {
+        return ParkId;
+    }
+
+    public void setParkId(Integer parkId) {
+        ParkId = parkId;
+    }
+
+    public String getParkName() {
+        return ParkName;
+    }
+
+    public void setParkName(String parkName) {
+        ParkName = parkName;
+    }
+
+    public Integer getDoorId() {
+        return DoorId;
+    }
+
+    public void setDoorId(Integer doorId) {
+        DoorId = doorId;
+    }
+
+    public String getDoorName() {
+        return DoorName;
+    }
+
+    public void setDoorName(String doorName) {
+        DoorName = doorName;
+    }
+
+    public String getSentryTrueName() {
+        return SentryTrueName;
+    }
+
+    public void setSentryTrueName(String sentryTrueName) {
+        SentryTrueName = sentryTrueName;
+    }
+
+    public String getPassTrueName() {
+        return PassTrueName;
+    }
+
+    public void setPassTrueName(String passTrueName) {
+        PassTrueName = passTrueName;
+    }
+
+    public String getPassDate() {
+        return PassDate;
+    }
+
+    public void setPassDate(String passDate) {
+        PassDate = passDate;
+    }
+
+    public String getTemperature() {
+        return Temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        Temperature = temperature;
+    }
+
+    public String getReason() {
+        return Reason;
+    }
+
+    public void setReason(String reason) {
+        Reason = reason;
+    }
+
+    public Integer getIsIn() {
+        return IsIn;
+    }
+
+    public void setIsIn(Integer isIn) {
+        IsIn = isIn;
+    }
+
+    public Integer getAdmit() {
+        return Admit;
+    }
+
+    public void setAdmit(Integer admit) {
+        Admit = admit;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PassRecordEntity{" +
+                "Id=" + Id +
+                ", ParkId=" + ParkId +
+                ", ParkName='" + ParkName + '\'' +
+                ", DoorId=" + DoorId +
+                ", DoorName='" + DoorName + '\'' +
+                ", SentryTrueName='" + SentryTrueName + '\'' +
+                ", PassTrueName='" + PassTrueName + '\'' +
+                ", PassDate='" + PassDate + '\'' +
+                ", Temperature='" + Temperature + '\'' +
+                ", Reason='" + Reason + '\'' +
+                ", IsIn=" + IsIn +
+                ", Admit=" + Admit +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", PhoneNumber='" + PhoneNumber + '\'' +
+                ", company='" + company + '\'' +
+                ", department='" + department + '\'' +
+                '}';
+    }
 }
