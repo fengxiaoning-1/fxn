@@ -74,6 +74,10 @@ public class PassRecord{
     private String Reason;
 
     /**
+	 *身份证
+     */
+	private String idCard;
+    /**
      *  出入状态：0:未进门，1:已进门
      */
     private String IsIn;
@@ -225,5 +229,13 @@ public class PassRecord{
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getIdCard() {
+		return idCard;
+	}
+
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
 	}
 }
