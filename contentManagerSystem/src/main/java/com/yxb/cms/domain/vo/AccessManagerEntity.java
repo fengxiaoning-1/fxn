@@ -53,6 +53,94 @@ public class AccessManagerEntity extends PageDto implements Serializable {
      */
     private String PassCodeValidDate;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
+    public Integer getId() {
+        return Id;
+    }
 
+    public void setId(Integer id) {
+        Id = id;
+    }
+
+    public Integer getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(Integer userId) {
+        UserId = userId;
+    }
+
+    public String getTrueName() {
+        return TrueName;
+    }
+
+    public void setTrueName(String trueName) {
+        TrueName = trueName;
+    }
+
+    public Integer getParkId() {
+        return ParkId;
+    }
+
+    public void setParkId(Integer parkId) {
+        ParkId = parkId;
+    }
+
+    public String getParkName() {
+        return ParkName;
+    }
+
+    public void setParkName(String parkName) {
+        ParkName = parkName;
+    }
+
+    public String getRoleCode() {
+        return RoleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        RoleCode = roleCode;
+    }
+
+    public Integer getIsCheck() {
+        return IsCheck;
+    }
+
+    public void setIsCheck(Integer isCheck) {
+        IsCheck = isCheck;
+    }
+
+    public String getPassCode() {
+        return PassCode;
+    }
+
+    public void setPassCode(String passCode) {
+        PassCode = passCode;
+    }
+
+    public String getPassCodeValidDate() {
+        return PassCodeValidDate;
+    }
+
+    public void setPassCodeValidDate(String passCodeValidDate) {
+        PassCodeValidDate = passCodeValidDate;
+    }
+
+    @Override
+    public String toString() {
+        return "AccessManagerEntity{" +
+                "Id=" + Id +
+                ", UserId=" + UserId +
+                ", TrueName='" + TrueName + '\'' +
+                ", ParkId=" + ParkId +
+                ", ParkName='" + ParkName + '\'' +
+                ", RoleCode='" + RoleCode + '\'' +
+                ", IsCheck=" + IsCheck +
+                ", PassCode='" + PassCode + '\'' +
+                ", PassCodeValidDate='" + PassCodeValidDate + '\'' +
+                '}';
+    }
 }
