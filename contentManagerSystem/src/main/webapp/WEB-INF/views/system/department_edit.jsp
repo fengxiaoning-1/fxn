@@ -159,11 +159,7 @@
                 success : function(data) {
                     if(data.returnCode == 0000){
                         top.layer.close(departmentSaveLoading);
-                        if(pageFlag == 'addPage'){
-                            common.cmsLaySucMsg("保存成功,默认密码123456,请及时修改")
-                        }else {
-                            common.cmsLaySucMsg("保存成功")
-                        }
+                        common.cmsLaySucMsg("保存成功")
                         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                         parent.layer.close(index); //再执行关闭                        //刷新父页面
                         parent.location.reload();

@@ -121,7 +121,7 @@
     <!-- 分页查询条件 -->
     <sql id="selectPageParmas">
         <where>
-            <if test="searchTerm != null and searchTerm != '' and searchContent != null and  searchContent != '' and  searchTerm == 'roleNameTerm' ">
+            <if test="searchContent != null and  searchContent != '' ">
                 AND  name LIKE CONCAT('%', #{searchContent,jdbcType=VARCHAR}, '%')
             </if>
         </where>

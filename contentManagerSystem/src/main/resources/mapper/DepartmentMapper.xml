@@ -162,8 +162,8 @@
     <!-- 分页查询条件 -->
     <sql id="selectPageParmas">
         <where>
-            <if test="searchTerm != null and searchTerm != '' and searchContent != null and  searchContent != '' and  searchTerm == 'roleNameTerm' ">
-                AND  name LIKE CONCAT('%', #{searchContent,jdbcType=VARCHAR}, '%')
+            <if test="searchContent != null and  searchContent != ''  ">
+                AND  sys_department.name LIKE CONCAT('%', #{searchContent,jdbcType=VARCHAR}, '%')
             </if>
         </where>
     </sql>
@@ -180,5 +180,10 @@
             </if>
         </where>
     </select>
+    
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    	delete from sys_department
+    	where id = #{id,jdbcType=INTEGER}
+  </delete>
   
  </mapper>

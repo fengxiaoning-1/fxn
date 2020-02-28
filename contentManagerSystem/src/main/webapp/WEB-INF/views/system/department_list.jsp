@@ -95,7 +95,6 @@
             form.on('submit(userSearchFilter)', function (data) {
                 table.reload('userTableId',{
                     where: {
-                            searchTerm:data.field.searchTerm,
                             searchContent:data.field.searchContent
                     },
                     height: 'full-140',
