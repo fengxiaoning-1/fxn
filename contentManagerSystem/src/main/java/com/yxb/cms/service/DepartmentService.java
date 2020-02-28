@@ -82,4 +82,7 @@ public class DepartmentService {
         }
         return BussinessMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_SUCCESS);
     }
+    public  int deleteByPrimaryKey(Integer id){
+        return departmentMapper.deleteByPrimaryKey(id);
+    }
 }

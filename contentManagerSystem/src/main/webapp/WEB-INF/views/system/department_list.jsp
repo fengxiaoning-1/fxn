@@ -122,33 +122,31 @@
         table.on('tool(userTableId)', function(obj){
             var data = obj.data; //获得当前行数据
             var layEvent = obj.event; //获得 lay-event 对应的值
-
+            var id = data.id;
             //修改
             if(layEvent === 'user_edit') {
-                var id = data.id;
                 var url =  "${ctx}/department/department_update.do?id="+id;
                 common.cmsLayOpen('编辑',url,'550px','265px');
 
+            }else if(layEvent === 'user_delete'){
+            	var url = "${ctx}/department/ajax_delete_department.do";
+                var param = {id:id};
+                common.ajaxCmsConfirm('系统提示', '确定删除部门吗?',url,param);
             }
         });
 
-
     });
-</script>
-<!-- 部门状态tpl-->
-<script type="text/html" id="userStatusTpl">
-
-    
 </script>
 
 
 <!--工具条 -->
 <script type="text/html" id="userBar">
     <div class="layui-btn-group">
-        <shiro:hasPermission name="fSv1B2kZ">
-            <a class="layui-btn layui-btn-xs user_edit" lay-event="user_edit"><i class="layui-icon larry-icon larry-bianji2"></i> 编辑</a>
-        </shiro:hasPermission>
-    </div>
+        <a class="layui-btn layui-btn-xs user_edit" lay-event="user_edit"><i class="layui-icon larry-icon larry-bianji2"></i> 编辑</a>
+        {{# if(d.level == 2){ }}
+		<a class="layui-btn layui-btn-xs user_delete" lay-event="user_delete"><i class="layui-icon larry-icon larry-bianji2"></i> 删除</a>
+    	{{#  } }}
+</div>
 </script>
 
 

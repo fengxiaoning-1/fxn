@@ -27,5 +27,4 @@ public interface DepartmentMapper {
     Long selectNameCheck(@Param("name") String roleName,@Param("id") Integer id);
     //
     List<Department> selectDepartmentList(Department record);
-
 }

@@ -99,7 +99,18 @@ public class DepartmentController extends BasicController{
         return Json.toJson(departmentService.selectDepartmentList(department));
     } 
     
-    
+    @RequestMapping("/ajax_delete_department.do")
+    @ResponseBody
+    @SystemControllerLog(description="删除部门信息")
+    public BussinessMsg ajaxDeleteDepartment(int id){
+    	try {
+    		departmentService.deleteByPrimaryKey(id);
+    	}catch (Exception e) {
+            log.error("保存部门信息方法内部错误",e);
+            return BussinessMsgUtil.returnCodeMessage(BussinessCode.DEPARTMENT_DELETE_ERROR);
+    	}
+    	return BussinessMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_SUCCESS);
+    }
     
     
 }

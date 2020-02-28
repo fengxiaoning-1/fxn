@@ -81,16 +81,13 @@
                 layer = parent.layer === undefined ? layui.layer : parent.layer;
         
         function init(){
-        	 var pageFlag = $("#pageFlag").val();
-             if(pageFlag == "updatePage"){
-                 //所属工厂不能修改
-                 var factoryId = ${department.factoryId};
-                 $("#factoryId option[value='"+factoryId+"']").prop("selected","selected");
-                 $("#factoryId").attr("disabled","disabled");
-                 var level = ${department.level};
-                 $("#level option[value='"+level+"']").prop("selected","selected");
-                 $("#level").attr("disabled","disabled");
-             }
+              //所属工厂不能修改
+              var factoryId = ${department.factoryId};
+              $("#factoryId option[value='"+factoryId+"']").prop("selected","selected");
+              $("#factoryId").attr("disabled","disabled");
+              var level = ${department.level};
+              $("#level option[value='"+level+"']").prop("selected","selected");
+              $("#level").attr("disabled","disabled");
              loadParentMenu();
         }
 
@@ -114,7 +111,7 @@
             	}else{
             		//1级部门、父级部门为空
                     if(level == 1){
-                        $('#departmentId option').not(":first").remove();
+                        $('#parentId option').not(":first").remove();
                         form.render('select');
                         return;
                     }	
@@ -131,9 +128,9 @@
                     },
                     success : function(data) {
                         if(data != "" ){
-                            $('#departmentId option').not(":first").remove();
-                            $(jQuery.parseJSON(data)).each(function(index,item){
-                                $("#departmentId").append(
+                            $('#parentId option').not(":first").remove();
+                            $(JSON.parse(data)).each(function(index,item){
+                                $("#parentId").append(
                                         '<option value="'+item.id+'">'+item.name+'</option>'
                                 );
 
