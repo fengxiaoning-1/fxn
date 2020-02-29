@@ -74,6 +74,7 @@
                 {type:"checkbox"},
                 {field:'name', title: '部门名称',align:'center' },
                 {field:'factoryName', title: '所属工厂',align:'center' },
+                {field:'level', title: '部门级别',align:'center', templet: '#levelTpl'},
                 {field:'creator', title: '创建人',align:'center'},
                 {field:'createTime', title: '创建时间',align:'center',width: '12%'},
                 {field:'modifier', title: '修改人',align:'center'},
@@ -145,9 +146,19 @@
         {{# if(d.level == 2){ }}
 		<a class="layui-btn layui-btn-xs user_delete" lay-event="user_delete"><i class="layui-icon larry-icon larry-bianji2"></i> 删除</a>
     	{{#  } }}
-</div>
+	</div>
 </script>
 
+<script type="text/html" id="levelTpl">
+
+    {{# if(d.level == 1){ }}
+     	一级部门
+    {{# } else if(d.level == 2){ }}
+   		二级部门
+    {{# } else { }}
+    	{{d.level}}
+    {{# }  }}
+</script>
 
 
 </body>
