@@ -12,7 +12,6 @@
 
     <link rel="stylesheet" href="${ctx}/static/layui_v2/css/layui.css">
 
-
     <script src="${ctx}/static/layui_v2/layui.js"></script>
     <script src="${ctx}/static/layui_v2/layui.js"></script>
     <script src="${ctx}/static/layui_v2/layui.js"></script>

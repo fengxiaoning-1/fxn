@@ -96,7 +96,6 @@ public class PassRecordService {
         excelExport.addColumnInfo("出入状态","IsIn");
         excelExport.addColumnInfo("体温","Temperature");
         excelExport.addColumnInfo("是否通过","Admit");
-        excelExport.addColumnInfo("身份证","idCard");
 
 
 

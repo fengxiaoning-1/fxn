@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yxb.cms.dao.PassDoorMapper" >
+  <resultMap id="BaseResultMap" type="com.yxb.cms.domain.dto.PassDoorDto" >
+    <id column="Id" property="Id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="DoorName" property="DoorName" jdbcType="VARCHAR" />
+    <result column="Address" property="Address" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <!-- 总记录数 -->
+    <select id="passDoorCount" parameterType="com.yxb.cms.domain.dto.PassDoorDto" resultType="Long">
+       select COUNT(1) from biz_door t1 LEFT JOIN biz_park t2 on t1.ParkId = t2.id
+        <where>
+            <if test="DoorName != '' and DoorName != null">
+                AND  t1.DoorName LIKE CONCAT('%', #{DoorName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="Name != '' and Name != null">
+                AND  t2.Name LIKE CONCAT('%', #{Name,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 列表信息分页显示 -->
+    <select id="selectDoorListByPage" parameterType="com.yxb.cms.domain.dto.PassDoorDto" resultMap="BaseResultMap">
+        select t1.Id, t1.DoorName,t2.name,t2.Address from biz_door t1 LEFT JOIN biz_park t2 on t1.ParkId = t2.id
+        <where>
+            <if test="DoorName != '' and DoorName != null">
+                AND  t1.DoorName LIKE CONCAT('%', #{DoorName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="Name != '' and Name != null">
+                AND  t2.Name LIKE CONCAT('%', #{Name,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 查询工厂信息 -->
+    <select id="selectParkList" parameterType="com.yxb.cms.domain.dto.PassDoorDto" resultMap="BaseResultMap">
+        SELECT Id,Name from biz_park;
+    </select>
+
+    <!--     新增岗亭     -->
+    <insert id="insert" parameterType="com.yxb.cms.domain.dto.PassDoorDto" >
+        insert into biz_door (ParkId, DoorName)
+        values (#{Id,jdbcType=INTEGER}, #{DoorName,jdbcType=VARCHAR})
+    </insert>
+
+    <!--     删除岗亭     -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from biz_door
+        where Id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <!--     得到一个岗亭对象岗亭     -->
+    <select id="getObjByPrimaryKey" resultType="com.yxb.cms.domain.dto.PassDoorDto" parameterType="java.lang.Integer" >
+        select * from biz_door
+        where Id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--  修改 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.yxb.cms.domain.dto.PassDoorDto" >
+        update biz_door
+        <set >
+            <if test="parkId != null" >
+                ParkId = #{parkId,jdbcType=INTEGER},
+            </if>
+            <if test="DoorName != null" >
+                DoorName = #{DoorName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where Id = #{id,jdbcType=INTEGER}
+    </update>
+  
+ </mapper>
