@@ -49,9 +49,17 @@ public class AccessManagerEntity extends PageDto implements Serializable {
     private String PassCode;
 
     /**
-     * PassCodeValidDate
+     * 通行时间
      */
     private String PassCodeValidDate;
+    /**
+     * 单位名称
+     */
+    private String companyName;
+    /**
+     * 所在部门
+     */
+    private String deptName;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -129,6 +137,22 @@ public class AccessManagerEntity extends PageDto implements Serializable {
         PassCodeValidDate = passCodeValidDate;
     }
 
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
     @Override
     public String toString() {
         return "AccessManagerEntity{" +
@@ -141,6 +165,8 @@ public class AccessManagerEntity extends PageDto implements Serializable {
                 ", IsCheck=" + IsCheck +
                 ", PassCode='" + PassCode + '\'' +
                 ", PassCodeValidDate='" + PassCodeValidDate + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", deptName='" + deptName + '\'' +
                 '}';
     }
 }

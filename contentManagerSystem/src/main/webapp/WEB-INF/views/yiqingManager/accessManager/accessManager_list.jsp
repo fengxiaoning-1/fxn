@@ -25,27 +25,17 @@
                     <form class="layui-form" id="userSearchForm">
 
                         <div class="layui-input-inline" style="width:145px;">
-                            <input type="text" name="TrueName" value="" placeholder="请输入姓名" class="layui-input search_input">
+                            <input type="text" id="TrueName" name="TrueName" value="" placeholder="请输入姓名" class="layui-input search_input">
                         </div>
                         <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
+                        <a class="layui-btn clearDateList_btn" lay-submit lay-filter="clearDateFilter"><i class="layui-icon larry-icon larry-chaxun14"></i>清空</a>
                     </form>
                 </div>
-             <%--   <shiro:hasPermission name="0rbT8t2P">
+                <shiro:hasPermission name="0rbT8t2P">
                     <div class="layui-inline">
-                        <a class="layui-btn layui-btn-normal userAdd_btn"> <i class="layui-icon larry-icon larry-xinzeng1"></i>新增用户</a>
-                    </div>
-                </shiro:hasPermission>--%>
-                <%--<shiro:hasPermission name="0jOfTHGx">
-                    <div class="layui-inline">
-                        <a class="layui-btn layui-btn-normal excelUserExport_btn"  style="background-color:#5FB878"> <i class="layui-icon larry-icon larry-danye"></i>导出</a>
+                        <a class="layui-btn layui-btn-normal userAdd_btn"> <i class="layui-icon larry-icon larry-xinzeng1"></i>新增</a>
                     </div>
                 </shiro:hasPermission>
-                <shiro:hasPermission name="lBE3hz5c">
-                    <div class="layui-inline">
-                        <a class="layui-btn layui-btn-danger userBatchFail_btn"><i class="layui-icon larry-icon larry-shanchu"></i>批量失效</a>
-                    </div>
-                </shiro:hasPermission>--%>
-
             </blockquote>
             <div class="larry-separate"></div>
             <!-- 用户列表 -->
@@ -86,8 +76,9 @@
                 {field:'IsCheck', title: '是否检查',align:'center'},
                 {field:'PassCode', title: '通行码',align:'center',width: '12%'},
                 {field:'PassCodeValidDate', title: '通行码有效时间',align:'center'},
-               /* {field:'updateTime', title: '修改时间',align:'center',width: '12%'},*/
-               /* {title: '操作', align:'center', width: '17%',toolbar: '#userBar'}*/
+                {field:'companyName', title: '单位名称',align:'center'},
+                {field:'deptName', title: '所属部门',align:'center'},
+                {title: '操作', align:'center', width: '17%',toolbar: '#userBar'}
             ]],
             page: true,
             done: function (res, curr, count) {
@@ -95,6 +86,12 @@
                 layer.close(loading);
 
             }
+        });
+
+        /**清空数据*/
+        $(".clearDateList_btn").click(function(){
+
+            $("#TrueName").val("");
         });
 
         /**查询*/
@@ -122,10 +119,10 @@
 
         });
 
-        /**新增用户*/
+        /**新增部门*/
         $(".userAdd_btn").click(function(){
-            var url = "${ctx}/user/user_add.do";
-            common.cmsLayOpen('新增用户',url,'550px','265px');
+            var url = "${ctx}/accessManager/accessManager_add.do";
+            common.cmsLayOpen('新增',url,'550px','265px');
         });
 
         /**导出用户信息*/
@@ -247,15 +244,8 @@
 <!--工具条 -->
 <script type="text/html" id="userBar">
     <div class="layui-btn-group">
-        <shiro:hasPermission name="fSv1B2kZ">
-            <a class="layui-btn layui-btn-xs user_edit" lay-event="user_edit"><i class="layui-icon larry-icon larry-bianji2"></i> 编辑</a>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="mScICO9G">
-            <a class="layui-btn layui-btn-xs layui-btn-warm  user_grant" lay-event="user_grant"><i class="layui-icon larry-icon larry-jiaoseguanli3"></i>角色</a>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="uBg9TdEr">
-            <a class="layui-btn layui-btn-xs layui-btn-danger user_fail" lay-event="user_fail"><i class="layui-icon larry-icon larry-ttpodicon"></i>失效</a>
-        </shiro:hasPermission>
+        <a class="layui-btn layui-btn-xs user_edit" lay-event="user_edit"><i class="layui-icon larry-icon larry-bianji2"></i> 编辑</a>
+        <a class="layui-btn layui-btn-xs user_delete" lay-event="user_delete"><i class="layui-icon larry-icon larry-bianji2"></i> 删除</a>
     </div>
 </script>
 
