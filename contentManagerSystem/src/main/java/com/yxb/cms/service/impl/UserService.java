@@ -30,7 +30,7 @@
  * - License: GNU Lesser General Public License (GPL)
  * - source code availability: http://git.oschina.net/yangxiaobing_175/contentManagerSystem
  */
-package com.yxb.cms.service;
+package com.yxb.cms.service.impl;
 
 import com.yxb.cms.architect.annotation.SystemServiceLog;
 import com.yxb.cms.architect.constant.BusinessConstants;

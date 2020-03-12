@@ -18,8 +18,8 @@ import com.yxb.cms.controller.BasicController;
 import com.yxb.cms.domain.bo.BussinessMsg;
 import com.yxb.cms.domain.vo.Department;
 import com.yxb.cms.domain.vo.Factory;
-import com.yxb.cms.service.DepartmentService;
-import com.yxb.cms.service.FactoryService;
+import com.yxb.cms.service.impl.DepartmentService;
+import com.yxb.cms.service.impl.FactoryService;
 
 @Controller
 @RequestMapping("department")

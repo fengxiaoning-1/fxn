@@ -34,8 +34,9 @@ package com.yxb.cms.architect.realm;
 
 import com.yxb.cms.domain.vo.Resource;
 import com.yxb.cms.domain.vo.User;
-import com.yxb.cms.service.ResourceService;
-import com.yxb.cms.service.UserService;
+import com.yxb.cms.service.impl.ResourceService;
+import com.yxb.cms.service.impl.UserService;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -26,7 +26,14 @@
         <setting name="defaultStatementTimeout" value="25000" /> 
         <setting name="callSettersOnNulls" value="true" /> 
         <setting name="logImpl" value="LOG4J2"/>
-    </settings>  
+    </settings>
+    
+    <plugins>
+	    <!-- com.github.pagehelper为PageHelper类所在包名 -->
+	    <plugin interceptor="com.github.pagehelper.PageInterceptor">
+	   		<property name="reasonable" value="true"/>
+	    </plugin>
+	</plugins>
         <!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径  -->  
 
     

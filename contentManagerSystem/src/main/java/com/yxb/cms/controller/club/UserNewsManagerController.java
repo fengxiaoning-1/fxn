@@ -1,11 +1,13 @@
 package com.yxb.cms.controller.club;
 
 import com.yxb.cms.domain.dto.UserNewsManagerDto;
-import com.yxb.cms.service.UserNewsManagerService;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.nutz.json.Json;
 import com.yxb.cms.domain.vo.UserNewsManagerEntity;
+import com.yxb.cms.service.impl.UserNewsManagerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.yxb.cms.service;
+package com.yxb.cms.service.impl;
 
 import java.util.Date;
 import java.util.HashMap;

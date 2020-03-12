@@ -12,7 +12,7 @@ import com.yxb.cms.architect.utils.BussinessMsgUtil;
 import com.yxb.cms.controller.BasicController;
 import com.yxb.cms.domain.bo.BussinessMsg;
 import com.yxb.cms.domain.vo.Factory;
-import com.yxb.cms.service.FactoryService;
+import com.yxb.cms.service.impl.FactoryService;
 
 /**
  * @ClassName:  FactoryController   

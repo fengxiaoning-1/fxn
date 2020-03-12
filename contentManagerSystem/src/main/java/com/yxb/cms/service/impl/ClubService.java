@@ -1,4 +1,4 @@
-package com.yxb.cms.service;
+package com.yxb.cms.service.impl;
 
 import com.yxb.cms.dao.ClubMapper;
 import com.yxb.cms.domain.vo.ClubEntity;

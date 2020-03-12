@@ -1,7 +1,8 @@
 package com.yxb.cms.controller.club;
 
 import com.yxb.cms.domain.vo.ClubEntity;
-import com.yxb.cms.service.ClubService;
+import com.yxb.cms.service.impl.ClubService;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.nutz.json.Json;

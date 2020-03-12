@@ -35,7 +35,8 @@ package com.yxb.cms.controller;
 import com.yxb.cms.architect.annotation.SystemControllerLog;
 import com.yxb.cms.architect.constant.Constants;
 import com.yxb.cms.handler.RedisClient;
-import com.yxb.cms.service.DataCleaningService;
+import com.yxb.cms.service.impl.DataCleaningService;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

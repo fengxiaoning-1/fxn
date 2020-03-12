@@ -38,7 +38,8 @@ import com.yxb.cms.controller.BasicController;
 import com.yxb.cms.dao.ResourceMapper;
 import com.yxb.cms.domain.bo.BussinessMsg;
 import com.yxb.cms.domain.vo.Resource;
-import com.yxb.cms.service.ResourceService;
+import com.yxb.cms.service.impl.ResourceService;
+
 import org.nutz.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

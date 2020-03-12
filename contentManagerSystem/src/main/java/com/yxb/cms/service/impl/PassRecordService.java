@@ -1,4 +1,4 @@
-package com.yxb.cms.service;
+package com.yxb.cms.service.impl;
 
 import com.yxb.cms.dao.PassRecordMapper;
 import com.yxb.cms.domain.bo.ExcelExport;

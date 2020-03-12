@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yxb.cms.dao.UserParkMapper" >
+  <resultMap id="BaseResultMap" type="com.yxb.cms.domain.vo.UserPark" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="TrueName" property="truename" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="ParkId" property="parkid" jdbcType="INTEGER" />
+    <result column="ParkName" property="parkname" jdbcType="VARCHAR" />
+    <result column="RoleCode" property="rolecode" jdbcType="VARCHAR" />
+    <result column="IsCheck" property="ischeck" jdbcType="INTEGER" />
+    <result column="PassCode" property="passcode" jdbcType="VARCHAR" />
+    <result column="PassCodeValidDate" property="passcodevaliddate" jdbcType="DATE" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="DeptName" property="deptname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, UserId, TrueName, Phone, ParkId, ParkName, RoleCode, IsCheck, PassCode, PassCodeValidDate, 
+    company_name, DeptName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yxb.cms.domain.vo.UserParkExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_user_park
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_park
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectOneByExample" resultMap="BaseResultMap" parameterType="com.yxb.cms.domain.vo.UserParkExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_user_park
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_user_park
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yxb.cms.domain.vo.UserParkExample" >
+    delete from sys_user_park
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yxb.cms.domain.vo.UserPark" >
+    insert into sys_user_park (Id, UserId, TrueName, 
+      Phone, ParkId, ParkName, 
+      RoleCode, IsCheck, PassCode, 
+      PassCodeValidDate, company_name, DeptName
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{truename,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{parkid,jdbcType=INTEGER}, #{parkname,jdbcType=VARCHAR}, 
+      #{rolecode,jdbcType=VARCHAR}, #{ischeck,jdbcType=INTEGER}, #{passcode,jdbcType=VARCHAR}, 
+      #{passcodevaliddate,jdbcType=DATE}, #{companyName,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxb.cms.domain.vo.UserPark" >
+    insert into sys_user_park
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="truename != null" >
+        TrueName,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="parkid != null" >
+        ParkId,
+      </if>
+      <if test="parkname != null" >
+        ParkName,
+      </if>
+      <if test="rolecode != null" >
+        RoleCode,
+      </if>
+      <if test="ischeck != null" >
+        IsCheck,
+      </if>
+      <if test="passcode != null" >
+        PassCode,
+      </if>
+      <if test="passcodevaliddate != null" >
+        PassCodeValidDate,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="deptname != null" >
+        DeptName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="truename != null" >
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="parkid != null" >
+        #{parkid,jdbcType=INTEGER},
+      </if>
+      <if test="parkname != null" >
+        #{parkname,jdbcType=VARCHAR},
+      </if>
+      <if test="rolecode != null" >
+        #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="ischeck != null" >
+        #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="passcode != null" >
+        #{passcode,jdbcType=VARCHAR},
+      </if>
+      <if test="passcodevaliddate != null" >
+        #{passcodevaliddate,jdbcType=DATE},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yxb.cms.domain.vo.UserParkExample" resultType="java.lang.Integer" >
+    select count(*) from sys_user_park
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_user_park
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.truename != null" >
+        TrueName = #{record.truename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        Phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parkid != null" >
+        ParkId = #{record.parkid,jdbcType=INTEGER},
+      </if>
+      <if test="record.parkname != null" >
+        ParkName = #{record.parkname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rolecode != null" >
+        RoleCode = #{record.rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ischeck != null" >
+        IsCheck = #{record.ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="record.passcode != null" >
+        PassCode = #{record.passcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passcodevaliddate != null" >
+        PassCodeValidDate = #{record.passcodevaliddate,jdbcType=DATE},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null" >
+        DeptName = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_user_park
+    set Id = #{record.id,jdbcType=INTEGER},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      TrueName = #{record.truename,jdbcType=VARCHAR},
+      Phone = #{record.phone,jdbcType=VARCHAR},
+      ParkId = #{record.parkid,jdbcType=INTEGER},
+      ParkName = #{record.parkname,jdbcType=VARCHAR},
+      RoleCode = #{record.rolecode,jdbcType=VARCHAR},
+      IsCheck = #{record.ischeck,jdbcType=INTEGER},
+      PassCode = #{record.passcode,jdbcType=VARCHAR},
+      PassCodeValidDate = #{record.passcodevaliddate,jdbcType=DATE},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      DeptName = #{record.deptname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxb.cms.domain.vo.UserPark" >
+    update sys_user_park
+    <set >
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="truename != null" >
+        TrueName = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="parkid != null" >
+        ParkId = #{parkid,jdbcType=INTEGER},
+      </if>
+      <if test="parkname != null" >
+        ParkName = #{parkname,jdbcType=VARCHAR},
+      </if>
+      <if test="rolecode != null" >
+        RoleCode = #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="ischeck != null" >
+        IsCheck = #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="passcode != null" >
+        PassCode = #{passcode,jdbcType=VARCHAR},
+      </if>
+      <if test="passcodevaliddate != null" >
+        PassCodeValidDate = #{passcodevaliddate,jdbcType=DATE},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null" >
+        DeptName = #{deptname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxb.cms.domain.vo.UserPark" >
+    update sys_user_park
+    set UserId = #{userid,jdbcType=INTEGER},
+      TrueName = #{truename,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      ParkId = #{parkid,jdbcType=INTEGER},
+      ParkName = #{parkname,jdbcType=VARCHAR},
+      RoleCode = #{rolecode,jdbcType=VARCHAR},
+      IsCheck = #{ischeck,jdbcType=INTEGER},
+      PassCode = #{passcode,jdbcType=VARCHAR},
+      PassCodeValidDate = #{passcodevaliddate,jdbcType=DATE},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      DeptName = #{deptname,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
