@@ -82,6 +82,14 @@ public class AccessManagerDto implements Serializable {
      * 检查时间
      */
     private String PassCodeValidDate;
+    /**
+     * 单位名称
+     */
+    private String companyName;
+    /**
+     * 所在部门
+     */
+    private String deptName;
 
     public Integer getId() {
         return Id;
@@ -143,6 +151,30 @@ public class AccessManagerDto implements Serializable {
         PassCodeValidDate = passCodeValidDate;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Integer getUserId() {
+        return UserId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
     @Override
     public String toString() {
         return "AccessManagerDto{" +
@@ -151,9 +183,11 @@ public class AccessManagerDto implements Serializable {
                 ", TrueName='" + TrueName + '\'' +
                 ", ParkName='" + ParkName + '\'' +
                 ", RoleCode='" + RoleCode + '\'' +
-                ", IsCheck=" + IsCheck +
+                ", IsCheck='" + IsCheck + '\'' +
                 ", PassCode='" + PassCode + '\'' +
                 ", PassCodeValidDate='" + PassCodeValidDate + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", deptName='" + deptName + '\'' +
                 '}';
     }
 }
